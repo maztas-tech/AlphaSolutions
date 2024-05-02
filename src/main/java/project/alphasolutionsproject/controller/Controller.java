@@ -1,4 +1,4 @@
 package project.alphasolutionsproject.controller;
 
-public class TestController {
+public class Controller {
 }
