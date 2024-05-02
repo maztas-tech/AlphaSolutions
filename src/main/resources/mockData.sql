@@ -25,3 +25,28 @@ CREATE TABLE IF NOT EXISTS task(
     FOREIGN KEY(projectID) REFERENCES project(projectID),
     FOREIGN KEY(subProjectID) REFERENCES subProject(subProjectID)
 );
+
+-- DML
+INSERT INTO project(projectName, startDate, endDate)
+VALUES
+    ('MockProject1', '2023-10-27', '2024-05-29'),
+    ('MockProject2', '2023-12-20', '2024-04-20'),
+    ('MockProject3', '2023-12-24', '2024-04-10');
+
+INSERT INTO subProject (subProjectName, startDate, endDate, projectID)
+VALUES
+    ('SubProject 1', '2024-01-15', '2024-02-28', 1),
+    ('SubProject 2', '2024-02-20', '2024-03-31', 1),
+    ('SubProject 3', '2024-03-25', '2024-04-30', 2),
+    ('SubProject 4', '2024-04-10', '2024-05-31', 2);
+
+INSERT INTO task (taskName, taskDescription, taskTimeEstimate, projectID, subProjectID)
+VALUES
+    ('Task 1', 'Complete initial analysis', 8, NULL, 1),
+    ('Task 2', 'Develop prototype', 16, NULL, 2),
+    ('Task 3', 'Test prototype functionality', 10, 1, NULL),
+    ('Task 4', 'Refine design based on feedback', 12, 1, NULL),
+    ('Task 5', 'Gather user requirements', 6, NULL, 3),
+    ('Task 6', 'Design user interface', 14, NULL, 3),
+    ('Task 7', 'Implement backend functionality', 20, NULL, 4),
+    ('Task 8', 'Perform integration testing', 10, 2, NULL);
