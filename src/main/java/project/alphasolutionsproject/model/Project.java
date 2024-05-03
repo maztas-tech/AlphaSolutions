@@ -72,4 +72,16 @@ public class Project {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectName='" + projectName + '\'' +
+                ", projectID=" + projectID +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", subProjectList=" + subProjectList +
+                ", taskListProject=" + taskListProject +
+                '}';
+    }
 }

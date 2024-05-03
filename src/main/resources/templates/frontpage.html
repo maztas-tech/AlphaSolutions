@@ -9,6 +9,10 @@
 <fieldset>
 <table>
     <tr th:each="project : ${projectList}">
+        <td th:text="${project.projectName}">Project Name</td>
+        <td th:text="${project.startDate}">Start Date</td>
+        <td th:text="${project.endDate}">End Date</td>
+    </tr>
 </table>
 </fieldset>
 </body>
