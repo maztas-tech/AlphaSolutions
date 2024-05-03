@@ -1,6 +1,7 @@
 package project.alphasolutionsproject.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Project {
 
@@ -8,12 +9,34 @@ public class Project {
     private int projectID;
     private LocalDate startDate;
     private LocalDate endDate;
+    private List<SubProject> subProjectList;
+    private List<Task> taskListProject;
 
     public Project(String projectName, int projectID, LocalDate startDate, LocalDate endDate) {
         this.projectName = projectName;
         this.projectID = projectID;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Project(String projectName, LocalDate startDate, LocalDate endDate) {
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public Project(String projectName, LocalDate startDate, LocalDate endDate, List<SubProject> subProjectList, List<Task> taskListProject) {
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.subProjectList = subProjectList;
+    }
+
+    public Project(String projectName, LocalDate startDate, LocalDate endDate, List<Task> taskListProject) {
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.taskListProject = taskListProject;
     }
 
     public Project() {}
@@ -48,5 +71,17 @@ public class Project {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectName='" + projectName + '\'' +
+                ", projectID=" + projectID +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", subProjectList=" + subProjectList +
+                ", taskListProject=" + taskListProject +
+                '}';
     }
 }

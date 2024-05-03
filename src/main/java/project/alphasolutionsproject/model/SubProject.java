@@ -1,12 +1,14 @@
 package project.alphasolutionsproject.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class SubProject {
     private String subProjectName;
     private int subProjectID;
     private LocalDate startDate;
     private LocalDate endDate;
+    private List<Task> taskListSubProjects;
 
 
     public SubProject(String subProjectName, int subProjectID, LocalDate startDate, LocalDate endDate) {
@@ -14,6 +16,13 @@ public class SubProject {
         this.subProjectID = subProjectID;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public SubProject(String subProjectName, LocalDate startDate, LocalDate endDate, List<Task> taskListSubProjects) {
+        this.subProjectName = subProjectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.taskListSubProjects = taskListSubProjects;
     }
 
     public String getSubProjectName() {
