@@ -42,11 +42,8 @@ public class Repository {
         } catch (SQLException e) {
             throw new RuntimeException();
         }
-      return projectsToShow;
+        return projectsToShow;
     }
-
-
-
 
 
 }
