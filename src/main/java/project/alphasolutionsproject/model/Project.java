@@ -16,6 +16,12 @@ public class Project {
         this.endDate = endDate;
     }
 
+    public Project(String projectName, LocalDate startDate, LocalDate endDate) {
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     public String getProjectName() {
         return projectName;
     }
