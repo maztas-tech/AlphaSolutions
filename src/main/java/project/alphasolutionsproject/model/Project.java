@@ -39,6 +39,8 @@ public class Project {
         this.taskListProject = taskListProject;
     }
 
+    public Project() {}
+
     public String getProjectName() {
         return projectName;
     }
