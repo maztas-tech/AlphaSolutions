@@ -20,7 +20,7 @@ public class ProjectController {
         this.project = new Project();
     }
 
-    @GetMapping("/edit_project")
+    @GetMapping("/edit")
     public String edit(ModelMap model) {
         return "edit_project";
     }
