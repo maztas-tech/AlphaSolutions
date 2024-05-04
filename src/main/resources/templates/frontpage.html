@@ -6,14 +6,26 @@
     <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
-<fieldset>
-<table>
-    <tr th:each="project : ${projectList}">
-        <td th:text="${project.projectName}">Project Name</td>
-        <td th:text="${project.startDate}">Start Date</td>
-        <td th:text="${project.endDate}">End Date</td>
-    </tr>
-</table>
-</fieldset>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <td>Project Name</td>
+                    <td>End date</td>
+                    <td>Start date</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tr th:each="project : ${projectList}">
+                <td th:text="${project.projectName}">Project Name</td>
+                <td th:text="${project.startDate}">Start Date</td>
+                <td th:text="${project.endDate}">End Date</td>
+                <td><input class="edit-button" type='button' value='Edit'/></td>
+                <td><input class="delete-button" type='button' value='Delete'/></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
