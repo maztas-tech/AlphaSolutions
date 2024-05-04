@@ -23,4 +23,8 @@ public class ProjectService {
     public void editProject(Project project) {
         projectRepository.updateProject(project);
     }
+
+    public void createProject(Project project){
+        projectRepository.createProject(project);
+    }
 }

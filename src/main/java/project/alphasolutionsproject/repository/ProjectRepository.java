@@ -59,5 +59,22 @@ public class ProjectRepository {
         }
     }
 
+    public void createProject(Project project){
+        Date startDate = Date.valueOf(project.getStartDate());
+        Date endDate = Date.valueOf(project.getEndDate());
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql = "INSERT INTO project (projectName,startDate,endDate) VALUES(?,?,?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1,project.getProjectName());
+            ps.setDate(2,startDate);
+            ps.setDate(3,endDate);
+
+            ps.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
 }

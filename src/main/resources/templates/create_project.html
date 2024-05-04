@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create project</title>
+</head>
+<body>
+<fieldset>
+    <legend>Create project</legend>
+
+    <form action="/alphasolutions/createProject" th:object="${projectObejct}" method="post">
+        <p>
+            <label for="projectName">Name of project</label>
+            <input id="projectName" name="projectName" th:field="*{projectName}" placeholder="project name">
+        </p>
+        <p>
+            <label for="startDate">start date</label>
+            <input id="startDate" name="startDate" type="date" th:field="*{startDate}" placeholder="start date">
+        </p>
+        <p>
+            <label for="endDate">end date</label>
+            <input id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="end date">
+        </p>
+        <button type="submit">Create project</button>
+    </form>
+</fieldset>
+
+<a th:href="@{'/alphasolutions'}">
+    <input type="button" value="Back">
+</a>
+
+</body>
+</html>

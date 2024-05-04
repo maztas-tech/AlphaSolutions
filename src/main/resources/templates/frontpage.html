@@ -13,6 +13,9 @@
         <td th:text="${project.startDate}">Start Date</td>
         <td th:text="${project.endDate}">End Date</td>
     </tr>
+    <a th:href="${'alphasolutions/createProject'}">
+        <input type="button" value="New project" class="button">
+    </a>
 </table>
 </fieldset>
 </body>
