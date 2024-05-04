@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>create project</title>
+    <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
-<fieldset>
-    <legend>Create project</legend>
-
+<div class="container">
     <form action="/alphasolutions/createProject" th:object="${projectObejct}" method="post">
         <p>
-            <label for="projectName">Name of project</label>
-            <input id="projectName" name="projectName" th:field="*{projectName}" placeholder="project name">
+            <label for="projectName">Name of project</label><br>
+            <input class="input-field" id="projectName" name="projectName" th:field="*{projectName}" placeholder="project name"><br>
         </p>
         <p>
-            <label for="startDate">start date</label>
-            <input id="startDate" name="startDate" type="date" th:field="*{startDate}" placeholder="start date">
+            <label for="startDate">start date</label><br>
+            <input class="input-field" id="startDate" name="startDate" type="date" th:field="*{startDate}" placeholder="start date"><br>
         </p>
         <p>
-            <label for="endDate">end date</label>
-            <input id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="end date">
+            <label for="endDate">end date</label><br>
+            <input class="input-field" id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="end date"><br>
         </p>
-        <button type="submit">Create project</button>
-    </form>
-</fieldset>
+        <p>
+            <button class="submit-button" type="submit">Create project</button>
+        </p>
 
+    </form>
+
+</div>
 <a th:href="@{'/alphasolutions'}">
     <input type="button" value="Back">
 </a>
