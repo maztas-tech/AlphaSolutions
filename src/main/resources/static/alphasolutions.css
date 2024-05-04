@@ -46,7 +46,7 @@ tfoot td {
     height: 25vh; /* Full viewport height */
 }
 
-
+/* Button designs */
 
 .delete-button {
     background-color: #ff6347; /* Coral color */
@@ -59,7 +59,6 @@ tfoot td {
     transition: background-color 0.3s ease;
 }
 
-/* button designs */
 .delete-button:hover {
     background-color: #d32f2f; /* Darker shade of coral on hover */
 }
@@ -84,5 +83,41 @@ tfoot td {
 }
 
 .edit-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+
+/* Submit button styles */
+.submit-button {
+    background-color: #4caf50; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #388e3c; /* Darker shade of green on hover */
+}
+
+.submit-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+
+/* Input design */
+.input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #4caf50; /* Green color when focused */
     outline: none; /* Remove focus outline */
 }
