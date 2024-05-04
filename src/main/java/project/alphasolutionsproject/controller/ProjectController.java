@@ -3,10 +3,7 @@ package project.alphasolutionsproject.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.repository.ProjectRepository;
 import project.alphasolutionsproject.service.ProjectService;
@@ -30,9 +27,17 @@ public class ProjectController {
     }
 
 
-    @GetMapping("/edit")
-    public String edit(ModelMap model) {
+    @GetMapping("{projectID}/edit")
+    public String edit(@PathVariable int projectID, ModelMap model) {
+        Project project = projectService.searchProjectById(projectID);
+        model.addAttribute("projectObject", project);
         return "edit_project";
+    }
+
+    @PostMapping("/edit")
+    public String edit(Project project, ModelMap model) {
+
+        return "redirect:/alphasolutions";
     }
 
     @GetMapping("/createProject")

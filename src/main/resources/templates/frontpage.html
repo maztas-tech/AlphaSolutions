@@ -22,7 +22,11 @@
                 <td th:text="${project.projectName}">Project Name</td>
                 <td th:text="${project.startDate}">Start Date</td>
                 <td th:text="${project.endDate}">End Date</td>
-                <td><input class="edit-button" type='button' value='Edit'/></td>
+                <td>
+                    <a th:href="@{'alphasolutions/' + ${project.projectID} + '/edit'}">
+                        <input class="edit-button" type='button' value='Edit'/>
+                    </a>
+                </td>
                 <td><input class="delete-button" type='button' value='Delete'/></td>
             </tr>
         </table>
