@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Project {
 
-    private String projectName;
     private int projectID;
+    private String projectName;
     private LocalDate startDate;
     private LocalDate endDate;
     private List<SubProject> subProjectList;
     private List<Task> taskListProject;
 
-    public Project(String projectName, int projectID, LocalDate startDate, LocalDate endDate) {
-        this.projectName = projectName;
+    public Project(int projectID, String projectName,  LocalDate startDate, LocalDate endDate) {
         this.projectID = projectID;
+        this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
     }

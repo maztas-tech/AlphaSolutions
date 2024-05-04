@@ -7,10 +7,19 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="post">
+        <form action="alphasolutions/edit" method="post">
+            <input name="projectID" type="hidden">
             <div>
                 <label for="projectName">New project name</label><br>
                 <input class="input-field" type="text" id="projectName"><br>
+            </div>
+            <div>
+                <label for="startDate">New start date</label><br>
+                <input class="input-field" type="date" id="startDate"><br>
+            </div>
+            <div>
+                <label for="endDate">New end date</label><br>
+                <input class="input-field" type="date" id="endDate"><br>
             </div>
             <p>
                 <input class="submit-button" type="submit">
