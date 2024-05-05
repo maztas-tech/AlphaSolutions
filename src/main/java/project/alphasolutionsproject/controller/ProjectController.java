@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
-import project.alphasolutionsproject.repository.ProjectRepository;
 import project.alphasolutionsproject.service.ProjectService;
 
 @Controller
@@ -27,16 +26,16 @@ public class ProjectController {
     }
 
 
-    @GetMapping("{projectID}/edit")
-    public String edit(@PathVariable int projectID, ModelMap model) {
+    @GetMapping("/{projectID}/edit")
+    public String getEdit(@PathVariable int projectID, ModelMap model) {
         Project project = projectService.searchProjectById(projectID);
         model.addAttribute("projectObject", project);
         return "edit_project";
     }
 
     @PostMapping("/edit")
-    public String edit(Project project, ModelMap model) {
-
+    public String edit(@ModelAttribute Project project) {
+        projectService.editProject(project);
         return "redirect:/alphasolutions";
     }
 

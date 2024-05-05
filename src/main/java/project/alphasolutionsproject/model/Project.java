@@ -1,38 +1,38 @@
 package project.alphasolutionsproject.model;
 
-import java.time.LocalDate;
-import java.util.List;
 
+import java.util.List;
+import java.sql.Date;
 public class Project {
 
     private int projectID;
     private String projectName;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private List<SubProject> subProjectList;
     private List<Task> taskListProject;
 
-    public Project(int projectID, String projectName,  LocalDate startDate, LocalDate endDate) {
+    public Project(int projectID, String projectName,  Date startDate, Date endDate) {
         this.projectID = projectID;
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Project(String projectName, LocalDate startDate, LocalDate endDate) {
+    public Project(String projectName, Date startDate, Date endDate) {
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Project(String projectName, LocalDate startDate, LocalDate endDate, List<SubProject> subProjectList, List<Task> taskListProject) {
+    public Project(String projectName, Date startDate, Date endDate, List<SubProject> subProjectList, List<Task> taskListProject) {
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.subProjectList = subProjectList;
     }
 
-    public Project(String projectName, LocalDate startDate, LocalDate endDate, List<Task> taskListProject) {
+    public Project(String projectName, Date startDate, Date endDate, List<Task> taskListProject) {
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -57,19 +57,19 @@ public class Project {
         this.projectID = projectID;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public Date getStartDate() {
+        return  startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public Date getEndDate() {
+        return  endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

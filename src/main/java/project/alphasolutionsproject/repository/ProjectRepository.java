@@ -33,8 +33,8 @@ public class ProjectRepository {
                 projectSQLData = new Project(
                         rS.getInt(1),
                         rS.getString(2),
-                        rS.getDate(3).toLocalDate(),
-                        rS.getDate(4).toLocalDate()
+                        rS.getDate(3),
+                        rS.getDate(4)
                 );
                 //System.out.println(projectSQLData);
                 projectsToShow.add(projectSQLData);
@@ -48,44 +48,62 @@ public class ProjectRepository {
     }
 
     public Project searchID(int projectID) {
-        String SQL = "SELECT projectID FROM project WHERE projectID = ?";
-
+        String SQL = "SELECT projectID, projectName, startDate, endDate FROM project WHERE projectID = ?";
+        Project projectObject = null;
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         try(PreparedStatement ps = connection.prepareStatement(SQL)) {
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                projectSQLData = new Project();
+                projectObject = new Project(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getDate(3),
+                        rs.getDate(4)
+                );
             }
         }catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return projectSQLData;
+        return projectObject;
     }
-
+    //UPDATE project SET projectName = ?, startDate = ?, endDate = ? WHERE projectID = ?
     public void updateProject(Project project){
-        String SQL = "UPDATE project SET projectName = ? WHERE projectID = ?";
+        String SQL = """       
+                UPDATE project
+                SET
+                    projectName = ?,
+                    startDate = ?,
+                    endDate = ?
+                WHERE projectID = ?;
+                        
+                        """;
+        Project projectObject = null;
         //Singleton
         Connection con = ConnectionManager.getConnection(db_url, db_user, db_pwd);
 
         try(PreparedStatement ps = con.prepareStatement(SQL)) {
+
             ps.setString(1, project.getProjectName());
-            ps.executeUpdate();
+            ps.setDate(2, project.getStartDate());
+            ps.setDate(3, project.getEndDate());
+            ps.setInt(4, project.getProjectID());
+
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
     public void createProject(Project project){
-        Date startDate = Date.valueOf(project.getStartDate());
-        Date endDate = Date.valueOf(project.getEndDate());
+        //Date startDate = Date.valueOf(project.getStartDate());
+        //Date endDate = Date.valueOf(project.getEndDate());
         Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
         String sql = "INSERT INTO project (projectName,startDate,endDate) VALUES(?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1,project.getProjectName());
-            ps.setDate(2,startDate);
-            ps.setDate(3,endDate);
+            ps.setDate(2,project.getStartDate());
+            ps.setDate(3,project.getEndDate());
 
             ps.executeUpdate();
         }

@@ -7,22 +7,23 @@
 </head>
 <body>
     <div class="container">
-        <form action="alphasolutions/edit" method="post" th:object="${projectObject}">
-            <input name="projectID" type="hidden" th:field="*{projectID}">
-            <div>
-                <label for="projectName">New project name</label><br>
-                <input class="input-field" type="text" id="projectName" th:field="*{projectName}"><br>
-            </div>
-            <div>
-                <label for="startDate">New start date</label><br>
-                <input class="input-field" type="date" id="startDate" th:date="*{startDate}"><br>
-            </div>
-            <div>
-                <label for="endDate">New end date</label><br>
-                <input class="input-field" type="date" id="endDate" th:date="*{endDate}"><br>
-            </div>
+        <form action="/alphasolutions/edit" method="post" th:object="${projectObject}">
+            <label for="projectID"></label>
+            <input name="projectID" type="hidden" id="projectID" th:field="*{projectID}">
             <p>
-                <input class="submit-button" type="submit">
+                <label for="projectName">New project name</label><br>
+                <input class="input-field" type="text" id="projectName" th:field="*{projectName}" ><br>
+            </p>
+            <p>
+                <label for="startDate">New start date</label><br>
+                <input class="input-field" type="date" id="startDate" th:field="*{startDate}"><br>
+            </p>
+            <p>
+                <label for="endDate">New end date</label><br>
+                <input class="input-field" type="date" id="endDate" th:field="*{endDate}"><br>
+            </p>
+            <p>
+                <input class="submit-button" type="submit" value="Submit">
             </p>
 
         </form>
