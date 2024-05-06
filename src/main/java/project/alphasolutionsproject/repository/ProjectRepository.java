@@ -19,7 +19,6 @@ public class ProjectRepository {
     @Value("${spring.datasource.password}")
     private String db_pwd;
 
-
     private Project projectSQLData;
 
     public List<Project> showAllProjects() {
@@ -36,13 +35,11 @@ public class ProjectRepository {
                         rS.getDate(3),
                         rS.getDate(4)
                 );
-                //System.out.println(projectSQLData);
                 projectsToShow.add(projectSQLData);
             }
         } catch (SQLException e) {
             throw new RuntimeException();
         }
-        //System.out.println(projectsToShow);
         return projectsToShow;
 
     }
@@ -51,7 +48,7 @@ public class ProjectRepository {
         String SQL = "SELECT projectID, projectName, startDate, endDate FROM project WHERE projectID = ?";
         Project projectObject = null;
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        try(PreparedStatement ps = connection.prepareStatement(SQL)) {
+        try (PreparedStatement ps = connection.prepareStatement(SQL)) {
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -62,14 +59,15 @@ public class ProjectRepository {
                         rs.getDate(4)
                 );
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return projectObject;
     }
+
     //UPDATE project SET projectName = ?, startDate = ?, endDate = ? WHERE projectID = ?
-    public void updateProject(Project project){
+    public void updateProject(Project project) {
         String SQL = """       
                 UPDATE project
                 SET
@@ -79,11 +77,10 @@ public class ProjectRepository {
                 WHERE projectID = ?;
                         
                         """;
-        Project projectObject = null;
         //Singleton
         Connection con = ConnectionManager.getConnection(db_url, db_user, db_pwd);
 
-        try(PreparedStatement ps = con.prepareStatement(SQL)) {
+        try (PreparedStatement ps = con.prepareStatement(SQL)) {
 
             ps.setString(1, project.getProjectName());
             ps.setDate(2, project.getStartDate());
@@ -92,24 +89,49 @@ public class ProjectRepository {
 
 
             ps.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void createProject(Project project){
-        //Date startDate = Date.valueOf(project.getStartDate());
-        //Date endDate = Date.valueOf(project.getEndDate());
-        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+    public void createProject(Project project) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "INSERT INTO project (projectName,startDate,endDate) VALUES(?,?,?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setString(1,project.getProjectName());
-            ps.setDate(2,project.getStartDate());
-            ps.setDate(3,project.getEndDate());
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, project.getProjectName());
+            ps.setDate(2, project.getStartDate());
+            ps.setDate(3, project.getEndDate());
 
             ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch (SQLException e){
+    }
+
+
+    public void deleteProject(int projectID) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "DELETE FROM task WHERE projectID = ?";
+        String sql2 = "DELETE FROM subProject WHERE projectID = ?";
+        String sql3 = "DELETE FROM project WHERE projectID = ?";
+
+        try {
+            //Removing a task
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, projectID);
+            preparedStatement.executeUpdate();
+
+            //Removing a subProject
+            preparedStatement = connection.prepareStatement(sql2);
+            preparedStatement.setInt(1, projectID);
+            preparedStatement.executeUpdate();
+
+            //Removing a project
+            preparedStatement = connection.prepareStatement(sql3);
+            preparedStatement.setInt(1, projectID);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

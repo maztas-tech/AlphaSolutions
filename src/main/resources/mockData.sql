@@ -42,11 +42,11 @@ VALUES
 
 INSERT INTO task (taskName, taskDescription, taskTimeEstimate, projectID, subProjectID)
 VALUES
-    ('Task 1', 'Complete initial analysis', 8, NULL, 1),
-    ('Task 2', 'Develop prototype', 16, NULL, 2),
+    ('Task 1', 'Complete initial analysis', 8, 1, 1),
+    ('Task 2', 'Develop prototype', 16, 1, 2),
     ('Task 3', 'Test prototype functionality', 10, 1, NULL),
     ('Task 4', 'Refine design based on feedback', 12, 1, NULL),
-    ('Task 5', 'Gather user requirements', 6, NULL, 3),
-    ('Task 6', 'Design user interface', 14, NULL, 3),
-    ('Task 7', 'Implement backend functionality', 20, NULL, 4),
+    ('Task 5', 'Gather user requirements', 6, 2, 3),
+    ('Task 6', 'Design user interface', 14, 2, 3),
+    ('Task 7', 'Implement backend functionality', 20, 2, 4),
     ('Task 8', 'Perform integration testing', 10, 2, NULL);
