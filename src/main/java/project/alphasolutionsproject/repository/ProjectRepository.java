@@ -90,6 +90,8 @@ public class ProjectRepository {
             ps.setDate(3, project.getEndDate());
             ps.setInt(4, project.getProjectID());
 
+
+            ps.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }

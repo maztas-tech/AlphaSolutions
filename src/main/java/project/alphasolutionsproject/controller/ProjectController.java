@@ -35,7 +35,9 @@ public class ProjectController {
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute Project project) {
+
         projectService.editProject(project);
+        System.out.println(project);
         return "redirect:/alphasolutions";
     }
 
