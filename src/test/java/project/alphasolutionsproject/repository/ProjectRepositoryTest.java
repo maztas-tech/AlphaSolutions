@@ -48,7 +48,7 @@ class ProjectRepositoryTest {
     @Test
     void deleteProject() {
         List<Project> allProjects = repository.showAllProjects();
-        repository.deleteProject(1);
+        repository.deleteProject(2);
         assertEquals(allProjects.size() - 1, repository.showAllProjects().size());
     }
 }
