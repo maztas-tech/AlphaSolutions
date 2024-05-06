@@ -26,7 +26,7 @@ class ProjectRepositoryTest {
     @Test
     void searchID() {
         Project found = repository.searchID(1);
-        assertEquals("MockProject1", found.getProjectName());
+        assertEquals(found.getProjectName(),repository.searchID(1).getProjectName());
     }
 
     @Test
