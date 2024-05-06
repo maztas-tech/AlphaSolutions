@@ -8,7 +8,7 @@ public class SubProject {
     private int subProjectID;
     private LocalDate startDate;
     private LocalDate endDate;
-    private List<Task> taskListSubProjects;
+    private int projectID;
 
 
     public SubProject(String subProjectName, int subProjectID, LocalDate startDate, LocalDate endDate) {
@@ -18,11 +18,11 @@ public class SubProject {
         this.endDate = endDate;
     }
 
-    public SubProject(String subProjectName, LocalDate startDate, LocalDate endDate, List<Task> taskListSubProjects) {
+    public SubProject(String subProjectName, LocalDate startDate, LocalDate endDate, int projectID) {
         this.subProjectName = subProjectName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.taskListSubProjects = taskListSubProjects;
+        this.projectID = projectID;
     }
 
     public String getSubProjectName() {
@@ -55,5 +55,13 @@ public class SubProject {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public int getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(int projectID) {
+        this.projectID = projectID;
     }
 }

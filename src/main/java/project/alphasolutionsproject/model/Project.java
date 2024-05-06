@@ -9,8 +9,6 @@ public class Project {
     private String projectName;
     private Date startDate;
     private Date endDate;
-    private List<SubProject> subProjectList;
-    private List<Task> taskListProject;
 
     public Project(int projectID, String projectName,  Date startDate, Date endDate) {
         this.projectID = projectID;
@@ -25,19 +23,9 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public Project(String projectName, Date startDate, Date endDate, List<SubProject> subProjectList, List<Task> taskListProject) {
-        this.projectName = projectName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.subProjectList = subProjectList;
-    }
 
-    public Project(String projectName, Date startDate, Date endDate, List<Task> taskListProject) {
-        this.projectName = projectName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.taskListProject = taskListProject;
-    }
+
+
 
     public Project() {}
 
@@ -80,8 +68,6 @@ public class Project {
                 ", projectID=" + projectID +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", subProjectList=" + subProjectList +
-                ", taskListProject=" + taskListProject +
                 '}';
     }
 }
