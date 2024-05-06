@@ -16,7 +16,6 @@ public class ProjectService {
 
     public List<Project> showAllProjects() {
         List<Project> projects = projectRepository.showAllProjects();
-        //System.out.println(projects);
         return projects;
     }
 
@@ -28,7 +27,11 @@ public class ProjectService {
         projectRepository.updateProject(project);
     }
 
-    public void createProject(Project project){
+    public void createProject(Project project) {
         projectRepository.createProject(project);
+    }
+
+    public void deleteProject(int projectID) {
+        projectRepository.deleteProject(projectID);
     }
 }

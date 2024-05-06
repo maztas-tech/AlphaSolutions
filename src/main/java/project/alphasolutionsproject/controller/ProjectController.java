@@ -42,14 +42,20 @@ public class ProjectController {
     }
 
     @GetMapping("/createProject")
-    public String createProjectForm(Model model){
-        model.addAttribute("projectObejct",new Project());
+    public String createProjectForm(Model model) {
+        model.addAttribute("projectObejct", new Project());
         return "create_project";
     }
 
     @PostMapping("/createProject")
-    public String createProject(@ModelAttribute("projectObject") Project project){
+    public String createProject(@ModelAttribute("projectObject") Project project) {
         projectService.createProject(project);
         return "redirect:/alphasolutions";
+    }
+
+    @GetMapping("/{projectID}/deleteProject")
+    public String deleteProject(@PathVariable int projectID) {
+        projectService.deleteProject(projectID);
+        return "redirect:/alphasolutions"; 
     }
 }
