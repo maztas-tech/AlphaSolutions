@@ -20,6 +20,10 @@ public class ProjectService {
         return projects;
     }
 
+    public Project searchProjectById(int project) {
+        return projectRepository.searchID(project);
+    }
+
     public void editProject(Project project) {
         projectRepository.updateProject(project);
     }
