@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
+import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
+import project.alphasolutionsproject.service.SubProjectService;
 
 @Controller
 @RequestMapping("/alphasolutions")
@@ -13,12 +15,17 @@ public class ProjectController {
 
     private ProjectService projectService;
     private Project project;
+    private SubProjectService subProjectService;
+    private SubProject subProject;
 
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, SubProjectService subProjectService) {
         this.projectService = projectService;
         this.project = new Project();
+        this.subProjectService = subProjectService;
+        this.subProject = new SubProject();
     }
 
+    // Project
     @GetMapping("")
     public String showAllProjects(Model model) {
         model.addAttribute("projectList", projectService.showAllProjects());
@@ -57,5 +64,12 @@ public class ProjectController {
     public String deleteProject(@PathVariable int projectID) {
         projectService.deleteProject(projectID);
         return "redirect:/alphasolutions"; 
+    }
+
+    // SubProject
+    @GetMapping("{projectID}/subProjects")
+    public String showAllSubProjects(Model model, @PathVariable int projectID) {
+        model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
+        return "subProject";
     }
 }
