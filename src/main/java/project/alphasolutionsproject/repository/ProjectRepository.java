@@ -131,6 +131,7 @@ public class ProjectRepository {
             preparedStatement.setInt(1, projectID);
             preparedStatement.executeUpdate();
 
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
