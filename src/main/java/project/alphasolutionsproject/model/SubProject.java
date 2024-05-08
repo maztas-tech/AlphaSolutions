@@ -26,6 +26,12 @@ public class SubProject {
         this.projectID = projectID;
     }
 
+    public SubProject(String subProjectName, Date startDate, Date endDate) {
+        this.subProjectName = subProjectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     public SubProject() {
     }
 

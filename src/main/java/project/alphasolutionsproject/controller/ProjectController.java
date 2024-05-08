@@ -14,15 +14,18 @@ import project.alphasolutionsproject.service.SubProjectService;
 public class ProjectController {
 
     private ProjectService projectService;
-    private SubProjectService subProjectService;
     private Project project;
+    private SubProjectService subProjectService;
+    private SubProject subProject;
 
-    public ProjectController(ProjectService projectService,SubProjectService subProjectService) {
+    public ProjectController(ProjectService projectService, SubProjectService subProjectService) {
         this.projectService = projectService;
         this.project = new Project();
         this.subProjectService = subProjectService;
+        this.subProject = new SubProject();
     }
 
+    // Project
     @GetMapping("")
     public String showAllProjects(Model model) {
         model.addAttribute("projectList", projectService.showAllProjects());
@@ -60,7 +63,14 @@ public class ProjectController {
     @GetMapping("/{projectID}/deleteProject")
     public String deleteProject(@PathVariable int projectID) {
         projectService.deleteProject(projectID);
-        return "redirect:/alphasolutions"; 
+        return "redirect:/alphasolutions";
+    }
+
+    // SubProject
+    @GetMapping("{projectID}/subProjects")
+    public String showAllSubProjects(Model model, @PathVariable int projectID) {
+        model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
+        return "subProject";
     }
 
     @GetMapping("/{projectID}/createSubProject")
