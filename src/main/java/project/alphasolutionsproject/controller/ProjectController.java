@@ -7,17 +7,20 @@ import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
+import project.alphasolutionsproject.service.SubProjectService;
 
 @Controller
 @RequestMapping("/alphasolutions")
 public class ProjectController {
 
     private ProjectService projectService;
+    private SubProjectService subProjectService;
     private Project project;
 
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService,SubProjectService subProjectService) {
         this.projectService = projectService;
         this.project = new Project();
+        this.subProjectService = subProjectService;
     }
 
     @GetMapping("")
@@ -60,15 +63,16 @@ public class ProjectController {
         return "redirect:/alphasolutions"; 
     }
 
-    @GetMapping("/createSubProject")
-    public String createSubProjectForm(Model model) {
-        model.addAttribute("projectObejct", new SubProject());
+    @GetMapping("/{projectID}/createSubProject")
+    public String createSubProjectForm(@PathVariable int projectID, Model model) {
+        model.addAttribute("projectID",projectID);
+        model.addAttribute("subProjectObejct", new SubProject());
         return "create_subProject";
     }
 
     @PostMapping("/createSubProject")
-    public String createSubProject(@ModelAttribute("projectObject") Project project) {
-        projectService.createProject(project);
+    public String createSubProject(@ModelAttribute("subProjectObject") SubProject subProject) {
+        subProjectService.createSubProject(subProject);
         return "redirect:/alphasolutions";
     }
 

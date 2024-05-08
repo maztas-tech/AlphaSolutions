@@ -27,9 +27,9 @@ public class SubProjectRepository {
          try(PreparedStatement ps = connection.prepareStatement(sql2)) {
 
              ps.setString(1,subProject.getSubProjectName());
-             ps.setDate(1,subProject.getStartDate());
-             ps.setDate(1,subProject.getEndDate());
-             ps.setInt(1,subProject.getProjectID());
+             ps.setDate(2,subProject.getStartDate());
+             ps.setDate(3,subProject.getEndDate());
+             ps.setInt(4,subProject.getProjectID());
 
              ps.executeUpdate();
 
