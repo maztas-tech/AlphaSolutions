@@ -32,6 +32,14 @@ public class SubProject {
         this.endDate = endDate;
     }
 
+    public SubProject(String subProjectName, int subProjectID, Date startDate, Date endDate, int projectID) {
+        this.subProjectName = subProjectName;
+        this.subProjectID = subProjectID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.projectID = projectID;
+    }
+
     public SubProject() {
     }
 
@@ -73,5 +81,16 @@ public class SubProject {
 
     public void setProjectID(int projectID) {
         this.projectID = projectID;
+    }
+
+    @Override
+    public String toString() {
+        return "SubProject{" +
+                "subProjectName='" + subProjectName + '\'' +
+                ", subProjectID=" + subProjectID +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", projectID=" + projectID +
+                '}';
     }
 }

@@ -14,15 +14,11 @@ import project.alphasolutionsproject.service.SubProjectService;
 public class ProjectController {
 
     private ProjectService projectService;
-    private Project project;
     private SubProjectService subProjectService;
-    private SubProject subProject;
 
     public ProjectController(ProjectService projectService, SubProjectService subProjectService) {
         this.projectService = projectService;
-        this.project = new Project();
         this.subProjectService = subProjectService;
-        this.subProject = new SubProject();
     }
 
     // Project
@@ -83,7 +79,7 @@ public class ProjectController {
     @PostMapping("/createSubProject")
     public String createSubProject(@ModelAttribute("subProjectObject") SubProject subProject) {
         subProjectService.createSubProject(subProject);
-        return "redirect:/alphasolutions";
+        return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
     }
 
 }

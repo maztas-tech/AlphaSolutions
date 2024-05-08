@@ -8,7 +8,9 @@
 <body>
 <div class="container">
   <form action="/alphasolutions/createSubProject" th:object="${subProjectObejct}" method="post">
-    <input type="hidden" name="ID" th:value="projectID">
+
+    <input type="hidden" name="projectID" th:value="${projectID}">
+
     <p>
       <label for="subProjectName">Name of subProject</label><br>
       <input class="input-field" id="subProjectName" name="subProjectName" th:field="*{subProjectName}" placeholder="subProject name"><br>
@@ -21,6 +23,9 @@
       <label for="endDate">end date</label><br>
       <input class="input-field" id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="end date"><br>
     </p>
+
+    <input type="hidden" id="projectID" th:field="*{projectID}">
+
     <p>
       <button class="submit-button" type="submit">Create subProject</button>
     </p>

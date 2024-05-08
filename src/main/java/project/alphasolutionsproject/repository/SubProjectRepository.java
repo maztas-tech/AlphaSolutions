@@ -49,9 +49,8 @@ public class SubProjectRepository {
 
     public void createSubProject(SubProject subProject){
         Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
-        String sql2 = "INSERT INTO subProject (subProjectName, startDate, endDate, projectID) VALUES (?,?,?,?)";
-         try(PreparedStatement ps = connection.prepareStatement(sql2)) {
-
+        String sql = "INSERT INTO subProject (subProjectName, startDate, endDate, projectID) VALUES (?,?,?,?)";
+         try(PreparedStatement ps = connection.prepareStatement(sql)) {
              ps.setString(1,subProject.getSubProjectName());
              ps.setDate(2,subProject.getStartDate());
              ps.setDate(3,subProject.getEndDate());
@@ -63,5 +62,6 @@ public class SubProjectRepository {
              e.printStackTrace();
          }
     }
+
 
 }
