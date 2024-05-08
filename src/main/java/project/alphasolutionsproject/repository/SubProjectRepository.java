@@ -5,10 +5,13 @@ import org.springframework.stereotype.Repository;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.repository.util.ConnectionManager;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Repository
 public class SubProjectRepository {
@@ -43,5 +46,22 @@ public class SubProjectRepository {
         }
         return subProjectsToShow;
     }
+
+    public void createSubProject(SubProject subProject){
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql = "INSERT INTO subProject (subProjectName, startDate, endDate, projectID) VALUES (?,?,?,?)";
+         try(PreparedStatement ps = connection.prepareStatement(sql)) {
+             ps.setString(1,subProject.getSubProjectName());
+             ps.setDate(2,subProject.getStartDate());
+             ps.setDate(3,subProject.getEndDate());
+             ps.setInt(4,subProject.getProjectID());
+
+             ps.executeUpdate();
+
+         }catch (SQLException e){
+             e.printStackTrace();
+         }
+    }
+
 
 }

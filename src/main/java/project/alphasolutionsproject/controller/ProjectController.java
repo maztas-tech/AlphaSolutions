@@ -14,15 +14,11 @@ import project.alphasolutionsproject.service.SubProjectService;
 public class ProjectController {
 
     private ProjectService projectService;
-    private Project project;
     private SubProjectService subProjectService;
-    private SubProject subProject;
 
     public ProjectController(ProjectService projectService, SubProjectService subProjectService) {
         this.projectService = projectService;
-        this.project = new Project();
         this.subProjectService = subProjectService;
-        this.subProject = new SubProject();
     }
 
     // Project
@@ -72,4 +68,18 @@ public class ProjectController {
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
         return "subProject";
     }
+
+    @GetMapping("/{projectID}/createSubProject")
+    public String createSubProjectForm(@PathVariable int projectID, Model model) {
+        model.addAttribute("projectID",projectID);
+        model.addAttribute("subProjectObejct", new SubProject());
+        return "create_subProject";
+    }
+
+    @PostMapping("/createSubProject")
+    public String createSubProject(@ModelAttribute("subProjectObject") SubProject subProject) {
+        subProjectService.createSubProject(subProject);
+        return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
+    }
+
 }

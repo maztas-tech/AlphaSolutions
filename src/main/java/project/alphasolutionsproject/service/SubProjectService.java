@@ -20,5 +20,8 @@ public class SubProjectService {
         return subProjectRepository.showAllSubProject(projectID);
     }
 
+    public void createSubProject(SubProject subProject){
+        subProjectRepository.createSubProject(subProject);
+    }
 
 }
