@@ -63,7 +63,7 @@ public class ProjectController {
     @GetMapping("/{projectID}/deleteProject")
     public String deleteProject(@PathVariable int projectID) {
         projectService.deleteProject(projectID);
-        return "redirect:/alphasolutions"; 
+        return "redirect:/alphasolutions";
     }
 
     // SubProject

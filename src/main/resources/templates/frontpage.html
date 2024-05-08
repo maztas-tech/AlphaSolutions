@@ -18,11 +18,11 @@
         </tr>
         </thead>
         <tr th:each="project : ${projectList}">
-            <a th:href="@{'alphasolutions/' + ${project.projectID} + '/subProjects'}">
-                <td>
+            <td>
+                <a th:href="@{'alphasolutions/' + ${project.projectID} + '/subProjects'}">
                     <input type="button" th:value="${project.projectName}" class="button">
-                </td>
-            </a>
+                </a>
+            </td>
             <td th:text="${project.startDate}">Start Date</td>
             <td th:text="${project.endDate}">End Date</td>
             <td>

@@ -1,8 +1,7 @@
 package project.alphasolutionsproject.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
+
 
 public class SubProject {
     private String subProjectName;
@@ -24,6 +23,12 @@ public class SubProject {
         this.startDate = startDate;
         this.endDate = endDate;
         this.projectID = projectID;
+    }
+
+    public SubProject(String subProjectName, Date startDate, Date endDate) {
+        this.subProjectName = subProjectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public SubProject() {

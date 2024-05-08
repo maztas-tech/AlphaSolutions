@@ -24,17 +24,16 @@ public class SubProjectRepository {
         SubProject subProjectSQLData;
         List<SubProject> subProjectsToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "SELECT * FROM subproject WHERE projectID = ?";
+        String SQL = "SELECT subProjectName, startDate, endDate FROM subproject WHERE projectID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, projectID);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 subProjectSQLData = new SubProject(
                         resultSet.getString(1),
-                        resultSet.getInt(2),
-                        resultSet.getDate(3),
-                        resultSet.getDate(4)
+                        resultSet.getDate(2),
+                        resultSet.getDate(3)
                 );
                 subProjectsToShow.add(subProjectSQLData);
             }
