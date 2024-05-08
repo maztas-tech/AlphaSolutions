@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
+import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
 
 @Controller
@@ -58,4 +59,17 @@ public class ProjectController {
         projectService.deleteProject(projectID);
         return "redirect:/alphasolutions"; 
     }
+
+    @GetMapping("/createSubProject")
+    public String createSubProjectForm(Model model) {
+        model.addAttribute("projectObejct", new SubProject());
+        return "create_subProject";
+    }
+
+    @PostMapping("/createSubProject")
+    public String createSubProject(@ModelAttribute("projectObject") Project project) {
+        projectService.createProject(project);
+        return "redirect:/alphasolutions";
+    }
+
 }

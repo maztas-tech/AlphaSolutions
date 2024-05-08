@@ -1,28 +1,32 @@
 package project.alphasolutionsproject.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
 public class SubProject {
     private String subProjectName;
     private int subProjectID;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private int projectID;
 
 
-    public SubProject(String subProjectName, int subProjectID, LocalDate startDate, LocalDate endDate) {
+    public SubProject(String subProjectName, int subProjectID, Date startDate, Date endDate) {
         this.subProjectName = subProjectName;
         this.subProjectID = subProjectID;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public SubProject(String subProjectName, LocalDate startDate, LocalDate endDate, int projectID) {
+    public SubProject(String subProjectName, Date startDate, Date endDate, int projectID) {
         this.subProjectName = subProjectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.projectID = projectID;
+    }
+
+    public SubProject() {
     }
 
     public String getSubProjectName() {
@@ -41,19 +45,19 @@ public class SubProject {
         this.subProjectID = subProjectID;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
