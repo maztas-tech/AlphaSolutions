@@ -27,7 +27,7 @@
                 </a>
             </td>
             <td>
-                <a th:href="@{'alphasolutions/' + ${subProject.subProjectID} + '/deleteProject'}">
+                <a th:href="@{'/alphasolutions/' + ${projectID} + '/subProjects/' + ${subProject.subProjectID} + '/remove'}">
                     <input class="delete-button" type='button' value='Delete'/>
                 </a>
             </td>

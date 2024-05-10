@@ -15,13 +15,21 @@ public class SubProjectService {
         this.subProjectRepository = subProjectRepository;
     }
 
+    public void deleteSubProject(int subProjectID) {
+        subProjectRepository.deleteProject(subProjectID);
+    }
 
     public List<SubProject> showAllSubProject(int projectID) {
         return subProjectRepository.showAllSubProject(projectID);
     }
 
-    public void createSubProject(SubProject subProject){
+    public void createSubProject(SubProject subProject) {
         subProjectRepository.createSubProject(subProject);
     }
+
+    public SubProject searchedSubProjectID(int subProjectID){
+        return subProjectRepository.searchSubProjectID(subProjectID);
+    }
+
 
 }

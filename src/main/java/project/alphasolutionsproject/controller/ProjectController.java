@@ -63,7 +63,7 @@ public class ProjectController {
     }
 
     // SubProject
-    @GetMapping("{projectID}/subProjects")
+    @GetMapping("/{projectID}/subProjects")
     public String showAllSubProjects(Model model, @PathVariable int projectID) {
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
         return "subProject";
@@ -71,7 +71,7 @@ public class ProjectController {
 
     @GetMapping("/{projectID}/createSubProject")
     public String createSubProjectForm(@PathVariable int projectID, Model model) {
-        model.addAttribute("projectID",projectID);
+        model.addAttribute("projectID", projectID);
         model.addAttribute("subProjectObejct", new SubProject());
         return "create_subProject";
     }
@@ -82,4 +82,11 @@ public class ProjectController {
         return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
     }
 
+
+    @GetMapping("/{projectID}/subProjects/{subProjectID}/remove")
+    public String deleteSubProject(@PathVariable("subProjectID") int subProjectID, @PathVariable("projectID") int projectID) {
+        subProjectService.searchedSubProjectID(subProjectID);
+        subProjectService.deleteSubProject(subProjectID);
+        return "redirect:/alphasolutions/" + projectID + "/subProjects";
+    }
 }
