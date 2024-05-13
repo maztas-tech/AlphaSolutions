@@ -9,6 +9,8 @@ import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
 import project.alphasolutionsproject.service.SubProjectService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/alphasolutions")
 public class ProjectController {
@@ -65,6 +67,7 @@ public class ProjectController {
     // SubProject
     @GetMapping("/{projectID}/subProjects")
     public String showAllSubProjects(Model model, @PathVariable int projectID) {
+        subProjectService.showAllSubProject(projectID);
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
         return "subProject";
     }
@@ -84,9 +87,10 @@ public class ProjectController {
 
 
     @GetMapping("/{projectID}/subProjects/{subProjectID}/remove")
-    public String deleteSubProject(@PathVariable("subProjectID") int subProjectID, @PathVariable("projectID") int projectID) {
-        subProjectService.searchedSubProjectID(subProjectID);
+    public String deleteSubProject(@PathVariable("subProjectID") int subProjectID,
+                                   @PathVariable("projectID") int projectID) {
         subProjectService.deleteSubProject(subProjectID);
         return "redirect:/alphasolutions/" + projectID + "/subProjects";
+
     }
 }

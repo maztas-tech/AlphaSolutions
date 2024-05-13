@@ -26,10 +26,4 @@ public class SubProjectService {
     public void createSubProject(SubProject subProject) {
         subProjectRepository.createSubProject(subProject);
     }
-
-    public SubProject searchedSubProjectID(int subProjectID){
-        return subProjectRepository.searchSubProjectID(subProjectID);
-    }
-
-
 }

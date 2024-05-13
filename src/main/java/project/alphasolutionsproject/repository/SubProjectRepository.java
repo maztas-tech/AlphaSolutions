@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.repository.util.ConnectionManager;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class SubProjectRepository {
         SubProject subProjectSQLData;
         List<SubProject> subProjectsToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "SELECT subProjectName, startDate, endDate FROM subproject WHERE projectID = ?";
+        String SQL = "SELECT subProjectName, subProjectID, startDate, endDate FROM subproject WHERE projectID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, projectID);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -35,8 +36,9 @@ public class SubProjectRepository {
             while (resultSet.next()) {
                 subProjectSQLData = new SubProject(
                         resultSet.getString(1),
-                        resultSet.getDate(2),
-                        resultSet.getDate(3)
+                        resultSet.getInt(2),
+                        resultSet.getDate(3),
+                        resultSet.getDate(4)
                 );
                 subProjectsToShow.add(subProjectSQLData);
             }
@@ -85,27 +87,4 @@ public class SubProjectRepository {
             e.printStackTrace();
         }
     }
-
-    public SubProject searchSubProjectID(int subProjectID) {
-        SubProject subProjectObject = null;
-        String sql = "SELECT subProjectName, subProjectID, startDate, endDate FROM subProject WHERE subProjectID = ?";
-        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, subProjectID);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                subProjectObject = new SubProject(
-                resultSet.getString(1),
-                resultSet.getInt(2),
-                resultSet.getDate(3),
-                resultSet.getDate(4)
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return subProjectObject;
-    }
-
-
 }
