@@ -8,8 +8,7 @@ import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
 import project.alphasolutionsproject.service.SubProjectService;
-
-import java.util.List;
+import project.alphasolutionsproject.service.TaskService;
 
 @Controller
 @RequestMapping("/alphasolutions")
@@ -17,10 +16,12 @@ public class ProjectController {
 
     private ProjectService projectService;
     private SubProjectService subProjectService;
+    private TaskService taskService;
 
-    public ProjectController(ProjectService projectService, SubProjectService subProjectService) {
+    public ProjectController(ProjectService projectService, SubProjectService subProjectService, TaskService taskService) {
         this.projectService = projectService;
         this.subProjectService = subProjectService;
+        this.taskService = taskService;
     }
 
     // Project
@@ -67,7 +68,6 @@ public class ProjectController {
     // SubProject
     @GetMapping("/{projectID}/subProjects")
     public String showAllSubProjects(Model model, @PathVariable int projectID) {
-        subProjectService.showAllSubProject(projectID);
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
         return "subProject";
     }
@@ -93,4 +93,13 @@ public class ProjectController {
         return "redirect:/alphasolutions/" + projectID + "/subProjects";
 
     }
+
+
+    // Task
+    @GetMapping("{projectID}/{subProjectID}/tasks")
+    public String showAllTasks(Model model, @PathVariable int subProjectID) {
+        model.addAttribute("taskList", taskService.showAllTask(subProjectID));
+        return "task";
+    }
+
 }

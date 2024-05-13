@@ -25,7 +25,12 @@ public class Task {
     }
 
 
-
+    public Task(String taskName, String taskDescription, int taskTimeEstimate, int taskID) {
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.taskTimeEstimate = taskTimeEstimate;
+        this.taskID = taskID;
+    }
 
 
 
@@ -76,4 +81,5 @@ public class Task {
     public void setSubProjectID(int subProjectID) {
         this.subProjectID = subProjectID;
     }
+
 }
