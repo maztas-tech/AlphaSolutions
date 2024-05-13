@@ -20,9 +20,7 @@ CREATE TABLE IF NOT EXISTS task(
     taskName VARCHAR(70) NOT NULL,
     taskDescription VARCHAR(256),
     taskTimeEstimate INT NOT NULL,
-    projectID INT,
     subProjectID INT,
-    FOREIGN KEY(projectID) REFERENCES project(projectID),
     FOREIGN KEY(subProjectID) REFERENCES subProject(subProjectID)
 );
 
@@ -40,13 +38,13 @@ VALUES
     ('SubProject 3', '2024-03-25', '2024-04-30', 2),
     ('SubProject 4', '2024-04-10', '2024-05-31', 2);
 
-INSERT INTO task (taskName, taskDescription, taskTimeEstimate, projectID, subProjectID)
+INSERT INTO task (taskName, taskDescription, taskTimeEstimate, subProjectID)
 VALUES
-    ('Task 1', 'Complete initial analysis', 8, 1, 1),
-    ('Task 2', 'Develop prototype', 16, 1, 2),
-    ('Task 3', 'Test prototype functionality', 10, 1, NULL),
-    ('Task 4', 'Refine design based on feedback', 12, 1, NULL),
-    ('Task 5', 'Gather user requirements', 6, 2, 3),
-    ('Task 6', 'Design user interface', 14, 2, 3),
-    ('Task 7', 'Implement backend functionality', 20, 2, 4),
-    ('Task 8', 'Perform integration testing', 10, 2, NULL);
+    ('Task 1', 'Complete initial analysis', 8, 1),
+    ('Task 2', 'Develop prototype', 16, 2),
+    ('Task 3', 'Test prototype functionality', 10, 1),
+    ('Task 4', 'Refine design based on feedback', 12, 2),
+    ('Task 5', 'Gather user requirements', 6, 3),
+    ('Task 6', 'Design user interface', 14, 3),
+    ('Task 7', 'Implement backend functionality', 20, 3),
+    ('Task 8', 'Perform integration testing', 10, 2);
