@@ -27,11 +27,12 @@
                 </a>
             </td>
             <td>
-                <a th:href="@{'alphasolutions/' + ${subProject.subProjectID} + '/deleteProject'}">
-                    <input class="delete-button" type='button' value='Delete'/>
+                <a th:href="@{'/alphasolutions/' + ${projectID} + '/subProjects/' + ${subProject.subProjectID} + '/remove'}">
+                    <input class="delete-button" type='button' value='Delete' th:object="${subProject}"/>
                 </a>
             </td>
         </tr>
+
     </table>
     <a th:href="${'/alphasolutions/'+ projectID +'/createSubProject'}">
         <input type="button" value="New subProject" class="button">
