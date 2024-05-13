@@ -23,13 +23,14 @@ public class TaskRepository {
     private String db_pwd;
 
 
-    public List<Task> showAllTask(int subProjectID) {
+    public List<Task> showAllTask(int projectID, int subProjectID) {
         Task taskSQLData;
         List<Task> taskToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "SELECT taskName, taskDescription, taskTimeEstimate, taskID FROM task WHERE subProjectID = ?";
+        String SQL = "SELECT taskName, taskDescription, taskTimeEstimate, taskID FROM task WHERE projectID = ? AND subProjectID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, subProjectID);
+            preparedStatement.setInt(1, projectID);
+            preparedStatement.setInt(2, subProjectID);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

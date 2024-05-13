@@ -21,6 +21,16 @@
             <td th:text="${task.taskName}">Task Name</td>
             <td th:text="${task.taskDescription}">Task Description</td>
             <td th:text="${task.taskTimeEstimate}">Time Estimate</td>
+            <td>
+                <a>
+                    <input class="edit-button" type='button' value='Edit'/>
+                </a>
+            </td>
+            <td>
+                <a>
+                    <input class="delete-button" type='button' value='Delete' th:object="${subProject}"/>
+                </a>
+            </td>
         </tr>
     </table>
 </div>
