@@ -26,4 +26,12 @@ public class SubProjectService {
     public void createSubProject(SubProject subProject) {
         subProjectRepository.createSubProject(subProject);
     }
+
+    public void editSubProject(SubProject subProject){
+        subProjectRepository.editSubProject(subProject);
+    }
+
+    public SubProject getSubProjectID(int subProjectID) {
+        return subProjectRepository.searchSubProjectID(subProjectID);
+    }
 }

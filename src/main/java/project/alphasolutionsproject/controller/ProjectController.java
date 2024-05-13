@@ -94,6 +94,19 @@ public class ProjectController {
 
     }
 
+    @GetMapping("/{projectID}/{subProjectID}/edit_subproject")
+    public String editSubProject(@PathVariable int subProjectID, Model model) {
+        model.addAttribute("subProjectObject", subProjectService.getSubProjectID(subProjectID));
+        model.addAttribute("projectID", subProjectService.getSubProjectID(subProjectID).getProjectID());
+        return "edit_subProject";
+    }
+
+    @PostMapping("/edit_subproject")
+    public String editSubProject(@ModelAttribute SubProject subProject) {
+        subProjectService.editSubProject(subProject);
+        return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
+    }
+
 
     // Task
     @GetMapping("{projectID}/{subProjectID}/tasks")
