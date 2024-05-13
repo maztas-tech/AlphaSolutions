@@ -14,7 +14,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> showAllTask(int projectID, int subProjectID) {
-        return taskRepository.showAllTask(projectID, subProjectID);
+    public List<Task> showAllTask(int subProjectID) {
+        return taskRepository.showAllTask(subProjectID);
     }
 }

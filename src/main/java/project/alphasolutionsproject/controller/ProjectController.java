@@ -97,8 +97,8 @@ public class ProjectController {
 
     // Task
     @GetMapping("{projectID}/{subProjectID}/tasks")
-    public String showAllTasks(Model model, @PathVariable int projectID, @PathVariable int subProjectID) {
-        model.addAttribute("taskList", taskService.showAllTask(projectID, subProjectID));
+    public String showAllTasks(Model model, @PathVariable int subProjectID) {
+        model.addAttribute("taskList", taskService.showAllTask(subProjectID));
         return "task";
     }
 
