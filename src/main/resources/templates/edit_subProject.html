@@ -7,9 +7,11 @@
 </head>
 <body>
 <div class="container">
-    <form action="/projects/edit" method="post" th:object="${subProjectObject}">
-        <label for="projectID"></label>
-        <input name="projectID" type="hidden" id="projectID" th:field="*{subProjectID}">
+    <form action="/alphasolutions/edit_subproject" method="post" th:object="${subProjectObject}">
+
+            <input name="subProjectID" type="hidden" th:field="*{subProjectID}">
+        <input name="projectID" type="hidden" id="projectID" th:field="*{projectID}">
+        <input name="projectID" type="hidden" th:value="projectID">
         <p>
             <label for="projectName">New project name</label><br>
             <input class="input-field" type="text" id="projectName" th:field="*{subProjectName}" ><br>

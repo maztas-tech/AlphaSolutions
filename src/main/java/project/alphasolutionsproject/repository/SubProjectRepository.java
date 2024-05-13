@@ -28,7 +28,7 @@ public class SubProjectRepository {
         SubProject subProjectSQLData;
         List<SubProject> subProjectsToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "SELECT subProjectID, subProjectName, startDate, endDate FROM subproject WHERE projectID = ?";
+        String SQL = "SELECT subProjectID, subProjectName, startDate, endDate, projectID FROM subproject WHERE projectID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, projectID);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -38,7 +38,8 @@ public class SubProjectRepository {
                         resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getDate(3),
-                        resultSet.getDate(4)
+                        resultSet.getDate(4),
+                        resultSet.getInt(5)
                 );
                 subProjectsToShow.add(subProjectSQLData);
             }
@@ -89,7 +90,7 @@ public class SubProjectRepository {
     }
 
     public SubProject searchSubProjectID(int subProjectID) {
-        String SQL = "SELECT subProjectID, subProjectName, startDate, endDate FROM subProject WHERE subProjectID = ?";
+        String SQL = "SELECT subProjectID, subProjectName, startDate, endDate, projectID FROM subProject WHERE subProjectID = ?";
         SubProject subProjectObject = null;
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         try (PreparedStatement ps = connection.prepareStatement(SQL)) {
@@ -100,7 +101,8 @@ public class SubProjectRepository {
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getDate(3),
-                        rs.getDate(4)
+                        rs.getDate(4),
+                        rs.getInt(5)
                 );
             }
         } catch (SQLException e) {
@@ -112,16 +114,18 @@ public class SubProjectRepository {
 
     public void editSubProject(SubProject subProject){
         Connection conn = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "UPDATE subproject SET subProjectName = ?, startDate = ?, endDate = ? WHERE projectID = ?";
-
+        String SQL = "UPDATE subProject SET subProjectName = ?, startDate = ?, endDate = ? WHERE subProjectID = ?";
         try(PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setString(1, subProject.getSubProjectName());
             ps.setDate(2, subProject.getStartDate());
             ps.setDate(3, subProject.getEndDate());
-            ps.setInt(4, subProject.getProjectID());
+            ps.setInt(4, subProject.getSubProjectID());
+
             ps.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 }
