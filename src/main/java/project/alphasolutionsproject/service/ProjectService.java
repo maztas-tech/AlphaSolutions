@@ -19,8 +19,8 @@ public class ProjectService {
         return projects;
     }
 
-    public Project searchProjectById(int project) {
-        return projectRepository.searchID(project);
+    public Project searchProjectById(int projectID) {
+        return projectRepository.searchID(projectID);
     }
 
     public void editProject(Project project) {
