@@ -8,6 +8,7 @@ import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
 import project.alphasolutionsproject.service.SubProjectService;
+import project.alphasolutionsproject.service.TaskService;
 
 @Controller
 @RequestMapping("/alphasolutions")
@@ -15,10 +16,12 @@ public class ProjectController {
 
     private ProjectService projectService;
     private SubProjectService subProjectService;
+    private TaskService taskService;
 
-    public ProjectController(ProjectService projectService, SubProjectService subProjectService) {
+    public ProjectController(ProjectService projectService, SubProjectService subProjectService, TaskService taskService) {
         this.projectService = projectService;
         this.subProjectService = subProjectService;
+        this.taskService = taskService;
     }
 
     // Project
@@ -63,7 +66,7 @@ public class ProjectController {
     }
 
     // SubProject
-    @GetMapping("{projectID}/subProjects")
+    @GetMapping("/{projectID}/subProjects")
     public String showAllSubProjects(Model model, @PathVariable int projectID) {
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
         return "subProject";
@@ -80,6 +83,23 @@ public class ProjectController {
     public String createSubProject(@ModelAttribute("subProjectObject") SubProject subProject) {
         subProjectService.createSubProject(subProject);
         return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
+    }
+
+
+    /*@GetMapping("/{projectID}/subProjects/{subProjectID}/remove")
+    public String deleteSubProject(@PathVariable("subProjectID") int subProjectID, @PathVariable("projectID") int projectID) {
+        subProjectService.deleteSubProject(subProjectID);
+        return "redirect:/alphasolutions/" + projectID + "/subProjects";
+
+    }
+
+     */
+
+    // Task
+    @GetMapping("{subProjectID}/tasks")
+    public String showAllTasks(Model model, @PathVariable int subProjectID) {
+        model.addAttribute("taskList", taskService.showAllTask(subProjectID));
+        return "task";
     }
 
 }
