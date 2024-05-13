@@ -5,20 +5,26 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
+import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.service.ProjectService;
+import project.alphasolutionsproject.service.SubProjectService;
+import project.alphasolutionsproject.service.TaskService;
 
 @Controller
 @RequestMapping("/alphasolutions")
 public class ProjectController {
 
     private ProjectService projectService;
-    private Project project;
+    private SubProjectService subProjectService;
+    private TaskService taskService;
 
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, SubProjectService subProjectService, TaskService taskService) {
         this.projectService = projectService;
-        this.project = new Project();
+        this.subProjectService = subProjectService;
+        this.taskService = taskService;
     }
 
+    // Project
     @GetMapping("")
     public String showAllProjects(Model model) {
         model.addAttribute("projectList", projectService.showAllProjects());
@@ -56,6 +62,57 @@ public class ProjectController {
     @GetMapping("/{projectID}/deleteProject")
     public String deleteProject(@PathVariable int projectID) {
         projectService.deleteProject(projectID);
-        return "redirect:/alphasolutions"; 
+        return "redirect:/alphasolutions";
     }
+
+    // SubProject
+    @GetMapping("/{projectID}/subProjects")
+    public String showAllSubProjects(Model model, @PathVariable int projectID) {
+        model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
+        return "subProject";
+    }
+
+    @GetMapping("/{projectID}/createSubProject")
+    public String createSubProjectForm(@PathVariable int projectID, Model model) {
+        model.addAttribute("projectID", projectID);
+        model.addAttribute("subProjectObejct", new SubProject());
+        return "create_subProject";
+    }
+
+    @PostMapping("/createSubProject")
+    public String createSubProject(@ModelAttribute("subProjectObject") SubProject subProject) {
+        subProjectService.createSubProject(subProject);
+        return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
+    }
+
+
+    @GetMapping("/{projectID}/subProjects/{subProjectID}/remove")
+    public String deleteSubProject(@PathVariable("subProjectID") int subProjectID,
+                                   @PathVariable("projectID") int projectID) {
+        subProjectService.deleteSubProject(subProjectID);
+        return "redirect:/alphasolutions/" + projectID + "/subProjects";
+
+    }
+
+    @GetMapping("/{projectID}/{subProjectID}/edit_subproject")
+    public String editSubProject(@PathVariable int subProjectID, Model model) {
+        model.addAttribute("subProjectObject", subProjectService.getSubProjectID(subProjectID));
+        model.addAttribute("projectID", subProjectService.getSubProjectID(subProjectID).getProjectID());
+        return "edit_subProject";
+    }
+
+    @PostMapping("/edit_subproject")
+    public String editSubProject(@ModelAttribute SubProject subProject) {
+        subProjectService.editSubProject(subProject);
+        return "redirect:/alphasolutions/" + subProject.getProjectID() + "/subProjects";
+    }
+
+
+    // Task
+    @GetMapping("{projectID}/{subProjectID}/tasks")
+    public String showAllTasks(Model model, @PathVariable int subProjectID) {
+        model.addAttribute("taskList", taskService.showAllTask(subProjectID));
+        return "task";
+    }
+
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>create subProject</title>
+  <link th:href="@{/alphasolutions.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <form action="/alphasolutions/createSubProject" th:object="${subProjectObejct}" method="post">
+
+    <input type="hidden" name="projectID" th:value="${projectID}">
+
+    <p>
+      <label for="subProjectName">Name of subProject</label><br>
+      <input class="input-field" id="subProjectName" name="subProjectName" th:field="*{subProjectName}" placeholder="subProject name"><br>
+    </p>
+    <p>
+      <label for="startDate">start date</label><br>
+      <input class="input-field" id="startDate" name="startDate" type="date" th:field="*{startDate}" placeholder="start date"><br>
+    </p>
+    <p>
+      <label for="endDate">end date</label><br>
+      <input class="input-field" id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="end date"><br>
+    </p>
+
+    <input type="hidden" id="projectID" th:field="*{projectID}">
+
+    <p>
+      <button class="submit-button" type="submit">Create subProject</button>
+    </p>
+
+  </form>
+
+</div>
+<a th:href="@{'/alphasolutions'}">
+  <input type="button" value="Back">
+</a>
+
+</body>
+</html>

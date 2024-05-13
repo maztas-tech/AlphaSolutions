@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit subproject</title>
+    <link th:href="@{/alphasolutions.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <form action="/alphasolutions/edit_subproject" method="post" th:object="${subProjectObject}">
+
+            <input name="subProjectID" type="hidden" th:field="*{subProjectID}">
+        <input name="projectID" type="hidden" id="projectID" th:field="*{projectID}">
+        <input name="projectID" type="hidden" th:value="projectID">
+        <p>
+            <label for="projectName">New project name</label><br>
+            <input class="input-field" type="text" id="projectName" th:field="*{subProjectName}" ><br>
+        </p>
+        <p>
+            <label for="startDate">New start date</label><br>
+            <input class="input-field" type="date" id="startDate" th:field="*{startDate}"><br>
+        </p>
+        <p>
+            <label for="endDate">New end date</label><br>
+            <input class="input-field" type="date" id="endDate" th:field="*{endDate}"><br>
+        </p>
+        <p>
+            <input class="submit-button" type="submit" value="Submit">
+        </p>
+
+    </form>
+</div>
+
+
+</body>
+</html>

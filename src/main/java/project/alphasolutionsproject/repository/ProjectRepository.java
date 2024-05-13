@@ -19,9 +19,9 @@ public class ProjectRepository {
     @Value("${spring.datasource.password}")
     private String db_pwd;
 
-    private Project projectSQLData;
 
     public List<Project> showAllProjects() {
+        Project projectSQLData;
         List<Project> projectsToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "SELECT projectID, projectName, startDate, endDate FROM project";
@@ -111,31 +111,30 @@ public class ProjectRepository {
 
     public void deleteProject(int projectID) {
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String sql = "DELETE FROM task WHERE projectID = ?";
+        String sql = "DELETE FROM task WHERE subProjectID IN (SELECT subProjectID FROM subProject WHERE projectID = ?)";
         String sql2 = "DELETE FROM subProject WHERE projectID = ?";
         String sql3 = "DELETE FROM project WHERE projectID = ?";
 
-        try {
-            //Removing a task
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+             PreparedStatement preparedStatement3 = connection.prepareStatement(sql3))
+        {
+
+            //Removing tasks
             preparedStatement.setInt(1, projectID);
             preparedStatement.executeUpdate();
 
             //Removing a subProject
-            preparedStatement = connection.prepareStatement(sql2);
-            preparedStatement.setInt(1, projectID);
-            preparedStatement.executeUpdate();
+            preparedStatement2.setInt(1, projectID);
+            preparedStatement2.executeUpdate();
 
             //Removing a project
-            preparedStatement = connection.prepareStatement(sql3);
-            preparedStatement.setInt(1, projectID);
-            preparedStatement.executeUpdate();
+            preparedStatement3.setInt(1, projectID);
+            preparedStatement3.executeUpdate();
 
-            preparedStatement.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
 }
