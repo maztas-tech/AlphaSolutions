@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
 import project.alphasolutionsproject.repository.util.ConnectionManager;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class SubProjectRepository {
         SubProject subProjectSQLData;
         List<SubProject> subProjectsToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "SELECT subProjectName, startDate, endDate FROM subproject WHERE projectID = ?";
+        String SQL = "SELECT subProjectName, subProjectID, startDate, endDate FROM subproject WHERE projectID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, projectID);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -35,8 +36,9 @@ public class SubProjectRepository {
             while (resultSet.next()) {
                 subProjectSQLData = new SubProject(
                         resultSet.getString(1),
-                        resultSet.getDate(2),
-                        resultSet.getDate(3)
+                        resultSet.getInt(2),
+                        resultSet.getDate(3),
+                        resultSet.getDate(4)
                 );
                 subProjectsToShow.add(subProjectSQLData);
             }
@@ -47,21 +49,42 @@ public class SubProjectRepository {
         return subProjectsToShow;
     }
 
-    public void createSubProject(SubProject subProject){
-        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+    public void createSubProject(SubProject subProject) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "INSERT INTO subProject (subProjectName, startDate, endDate, projectID) VALUES (?,?,?,?)";
-         try(PreparedStatement ps = connection.prepareStatement(sql)) {
-             ps.setString(1,subProject.getSubProjectName());
-             ps.setDate(2,subProject.getStartDate());
-             ps.setDate(3,subProject.getEndDate());
-             ps.setInt(4,subProject.getProjectID());
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, subProject.getSubProjectName());
+            ps.setDate(2, subProject.getStartDate());
+            ps.setDate(3, subProject.getEndDate());
+            ps.setInt(4, subProject.getProjectID());
 
-             ps.executeUpdate();
+            ps.executeUpdate();
 
-         }catch (SQLException e){
-             e.printStackTrace();
-         }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
+    public void deleteProject(int subProjectID) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql1 = "DELETE FROM task WHERE subProjectID = ?";
+        String sql2 = "DELETE FROM subProject WHERE subProjectID = ?";
+
+        try (PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+             PreparedStatement preparedStatement2 = connection.prepareStatement(sql2)) {
+
+            //Removing a task
+            preparedStatement1.setInt(1, subProjectID);
+            preparedStatement1.executeUpdate();
+
+            //Removing a subProject
+            preparedStatement2.setInt(1, subProjectID);
+            preparedStatement2.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
