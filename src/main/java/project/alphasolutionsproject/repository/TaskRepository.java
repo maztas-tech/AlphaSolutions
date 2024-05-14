@@ -47,6 +47,21 @@ public class TaskRepository {
         return taskToShow;
     }
 
+    public void createTask(Task task) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String SQL = "INSERT INTO task (taskName, taskDescription, taskTimeEstimate, subProjectID) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)){
+            preparedStatement.setString(1, task.getTaskName());
+            preparedStatement.setString(2, task.getTaskDescription());
+            preparedStatement.setInt(3, task.getTaskTimeEstimate());
+            preparedStatement.setInt(4, task.getSubProjectID());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void deleteTask (int taskID){
         Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
         String sql = "DELETE FROM task WHERE taskID = ?";
