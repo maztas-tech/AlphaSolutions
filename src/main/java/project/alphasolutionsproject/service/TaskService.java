@@ -17,4 +17,12 @@ public class TaskService {
     public List<Task> showAllTask(int subProjectID) {
         return taskRepository.showAllTask(subProjectID);
     }
+
+    public void deleteTask(int taskID){
+        taskRepository.deleteTask(taskID);
+    }
+
+    public int findID(int subProjectID){
+        return taskRepository.findProjectID(subProjectID);
+    }
 }

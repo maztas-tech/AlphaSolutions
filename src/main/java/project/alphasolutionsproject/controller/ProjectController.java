@@ -115,4 +115,12 @@ public class ProjectController {
         return "task";
     }
 
+    @GetMapping("/{subProjectID}/{taskID}/delete")
+    public String deleteTask(@PathVariable int subProjectID,
+                             @PathVariable int taskID){
+        int projectID = taskService.findID(subProjectID);
+        taskService.deleteTask(taskID);
+        return "redirect:/alphasolutions/" + projectID + "/" + subProjectID + "/tasks";
+    }
+
 }
