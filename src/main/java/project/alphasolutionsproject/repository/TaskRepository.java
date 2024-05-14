@@ -27,16 +27,16 @@ public class TaskRepository {
         Task taskSQLData;
         List<Task> taskToShow = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String SQL = "SELECT taskName, taskDescription, taskTimeEstimate, taskID FROM task WHERE subProjectID = ?";
+        String SQL = "SELECT taskID, taskName, taskDescription, taskTimeEstimate FROM task WHERE subProjectID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, subProjectID);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 taskSQLData = new Task(
-                        resultSet.getString(1),
+                        resultSet.getInt(1),
                         resultSet.getString(2),
-                        resultSet.getInt(3),
+                        resultSet.getString(3),
                         resultSet.getInt(4)
                 );
                 taskToShow.add(taskSQLData);
@@ -74,5 +74,19 @@ public class TaskRepository {
             e.printStackTrace();
         }
         return id;
+    }
+
+    public void editTask(Task task){
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql = "UPDATE task SET taskName = ?, taskDescription = ?, taskTimeEstimate = ?  WHERE taskID = ?";
+        try(PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1,task.getTaskName());
+            ps.setString(2,task.getTaskDescription());
+            ps.setInt(3,task.getTaskTimeEstimate());
+            ps.setInt(4,task.getTaskID());
+            ps.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
