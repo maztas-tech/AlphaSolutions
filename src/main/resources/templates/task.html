@@ -33,6 +33,19 @@
             </td>
         </tr>
     </table>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <td>Estimation</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${sumOfTasks}"></td>
+            </tr>
+        </tbody>
+    </table>
 
     <a th:href="${'/alphasolutions/' + subProjectID +'/createTask'}">
         <input type="button" value="New Task" class="button">

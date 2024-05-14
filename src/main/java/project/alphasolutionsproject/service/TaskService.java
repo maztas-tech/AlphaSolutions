@@ -33,4 +33,8 @@ public class TaskService {
     public void editTask(Task task){
         taskRepository.editTask(task);
     }
+
+    public int sumOfTask(int subProjectID){
+        return taskRepository.sumOfTaskTime(subProjectID);
+    }
 }
