@@ -8,31 +8,23 @@ public class Task {
     private int projectID;
     private int subProjectID;
 
-    public Task(int projectID, String taskName, String taskDescription, int taskID, int taskTimeEstimate) {
+    public Task(int taskID, String taskName, String taskDescription, int taskTimeEstimate) {
+        this.taskID = taskID;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
-        this.taskID = taskID;
         this.taskTimeEstimate = taskTimeEstimate;
-        this.projectID = projectID;
     }
 
-    public Task(String taskName, String taskDescription, int taskID, int taskTimeEstimate, int subProjectID) {
+    public Task(int taskID, String taskName, String taskDescription,  int taskTimeEstimate, int subProjectID) {
+        this.taskID = taskID;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
-        this.taskID = taskID;
         this.taskTimeEstimate = taskTimeEstimate;
         this.subProjectID = subProjectID;
     }
 
-
-    public Task(String taskName, String taskDescription, int taskTimeEstimate, int taskID) {
-        this.taskName = taskName;
-        this.taskDescription = taskDescription;
-        this.taskTimeEstimate = taskTimeEstimate;
-        this.taskID = taskID;
+    public Task() {
     }
-
-
 
     public String getTaskName() {
         return taskName;

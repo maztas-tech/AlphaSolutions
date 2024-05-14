@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
+import project.alphasolutionsproject.model.Task;
 import project.alphasolutionsproject.service.ProjectService;
 import project.alphasolutionsproject.service.SubProjectService;
 import project.alphasolutionsproject.service.TaskService;
@@ -121,6 +122,22 @@ public class ProjectController {
         int projectID = taskService.findID(subProjectID);
         taskService.deleteTask(taskID);
         return "redirect:/alphasolutions/" + projectID + "/" + subProjectID + "/tasks";
+    }
+
+    @GetMapping("/{subProjectID}/{taskID}/edit_task")
+    public String editTaskForm(@PathVariable int taskID, Model model, Task task){
+        model.addAttribute("task",task);
+        model.addAttribute("taskID",taskID);
+        return "edit_task";
+    }
+
+    @PostMapping("/edit_task")
+    public String editTask(@ModelAttribute Task task){
+        SubProject subProject = subProjectService.getSubProjectID(task.getSubProjectID());
+        int projectId = subProject.getProjectID();
+        int subProjectID = task.getSubProjectID();
+        taskService.editTask(task);
+        return "redirect:/alphasolutions/" + projectId + "/" + subProjectID + "/tasks";
     }
 
 }
