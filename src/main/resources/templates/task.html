@@ -22,7 +22,7 @@
             <td th:text="${task.taskDescription}">Task Description</td>
             <td th:text="${task.taskTimeEstimate}">Time Estimate</td>
             <td>
-                <a>
+                <a th:href="@{'/alphasolutions/'+ ${subProjectID} + '/' + ${task.taskID} + '/edit_task'}">
                     <input class="edit-button" type='button' value='Edit'/>
                 </a>
             </td>

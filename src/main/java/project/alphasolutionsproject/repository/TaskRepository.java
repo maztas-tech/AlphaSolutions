@@ -90,4 +90,18 @@ public class TaskRepository {
         }
         return id;
     }
+
+    public void editTask(Task task){
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql = "UPDATE task SET taskName = ?, taskDescription = ?, taskTimeEstimate = ?  WHERE taskID = ?";
+        try(PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1,task.getTaskName());
+            ps.setString(2,task.getTaskDescription());
+            ps.setInt(3,task.getTaskTimeEstimate());
+            ps.setInt(4,task.getTaskID());
+            ps.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
