@@ -5,7 +5,6 @@ public class Task {
     private String taskDescription;
     private int taskID;
     private int taskTimeEstimate;
-    private int projectID;
     private int subProjectID;
 
     public Task(int taskID, String taskName, String taskDescription, int taskTimeEstimate) {
@@ -23,8 +22,12 @@ public class Task {
         this.subProjectID = subProjectID;
     }
 
+
+
     public Task() {
     }
+
+
 
     public String getTaskName() {
         return taskName;
@@ -58,13 +61,6 @@ public class Task {
         this.taskTimeEstimate = taskTimeEstimate;
     }
 
-    public int getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(int projectID) {
-        this.projectID = projectID;
-    }
 
     public int getSubProjectID() {
         return subProjectID;
