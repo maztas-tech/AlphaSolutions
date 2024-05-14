@@ -46,4 +46,33 @@ public class TaskRepository {
         }
         return taskToShow;
     }
+
+    public void deleteTask (int taskID){
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql = "DELETE FROM task WHERE taskID = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1,taskID);
+            ps.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public int findProjectID(int subProjectID){
+        int id = 0;
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql ="SELECT projectID FROM subProject WHERE subProjectId = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1,subProjectID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                id = rs.getInt(1);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return id;
+    }
 }
