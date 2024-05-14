@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Task</title>
+    <link th:href="@{/alphasolutions.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <form action="/alphasolutions/createTask" th:object="${taskObject}" method="post">
+
+        <input type="hidden" name="subProjectID" th:value="${subProjectID}">
+
+        <p>
+            <label for="taskName">Name of task</label><br>
+            <input class="input-field" id="taskName" name="taskName" th:field="*{taskName}" placeholder="Task Name"><br>
+        </p>
+        <p>
+            <label for="description">Description</label><br>
+            <textarea id="description" name="description" type="text" th:field="*{taskDescription}" placeholder="Description"></textarea><br>
+        </p>
+        <p>
+            <label for="timeEstimate">Time Estimate</label><br>
+            <input class="input-field" id="timeEstimate" name="timeEstimate" type="number" th:field="*{taskTimeEstimate}" placeholder="Time Estimate"><br>
+        </p>
+
+        <input type="hidden" id="subProjectID" th:field="*{subProjectID}">
+
+        <p>
+            <button class="submit-button" type="submit">Create Task</button>
+        </p>
+
+    </form>
+
+</div>
+<a th:href="@{'/alphasolutions'}">
+    <input type="button" value="Back">
+</a>
+
+</body>
+</html>

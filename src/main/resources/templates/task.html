@@ -31,9 +31,13 @@
                     <input class="delete-button" type="button" value='Delete' th:object="${task}"/>
                 </a>
             </td>
-            <td th:text="task.projectID"></td>
         </tr>
     </table>
+
+    <a th:href="${'/alphasolutions/' + subProjectID +'/createTask'}">
+        <input type="button" value="New Task" class="button">
+    </a>
+
 </div>
 </body>
 </html>
