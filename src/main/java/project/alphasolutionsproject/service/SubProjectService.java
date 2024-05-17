@@ -27,7 +27,7 @@ public class SubProjectService {
         subProjectRepository.createSubProject(subProject);
     }
 
-    public void editSubProject(SubProject subProject){
+    public void editSubProject(SubProject subProject) {
         subProjectRepository.editSubProject(subProject);
     }
 

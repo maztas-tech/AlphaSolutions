@@ -50,7 +50,7 @@ public class TaskRepository {
     public void createTask(Task task) {
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String SQL = "INSERT INTO task (taskName, taskDescription, taskTimeEstimate, subProjectID) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, task.getTaskName());
             preparedStatement.setString(2, task.getTaskDescription());
             preparedStatement.setInt(3, task.getTaskTimeEstimate());
@@ -62,60 +62,60 @@ public class TaskRepository {
         }
     }
 
-    public void deleteTask (int taskID){
-        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+    public void deleteTask(int taskID) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "DELETE FROM task WHERE taskID = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setInt(1,taskID);
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, taskID);
             ps.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public int findProjectID(int subProjectID){
+    public int findProjectID(int subProjectID) {
         int id = 0;
-        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
-        String sql ="SELECT projectID FROM subProject WHERE subProjectId = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setInt(1,subProjectID);
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "SELECT projectID FROM subProject WHERE subProjectId = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, subProjectID);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 id = rs.getInt(1);
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return id;
     }
 
-    public void editTask(Task task){
-        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+    public void editTask(Task task) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "UPDATE task SET taskName = ?, taskDescription = ?, taskTimeEstimate = ?  WHERE taskID = ?";
-        try(PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1,task.getTaskName());
-            ps.setString(2,task.getTaskDescription());
-            ps.setInt(3,task.getTaskTimeEstimate());
-            ps.setInt(4,task.getTaskID());
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, task.getTaskName());
+            ps.setString(2, task.getTaskDescription());
+            ps.setInt(3, task.getTaskTimeEstimate());
+            ps.setInt(4, task.getTaskID());
             ps.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public int sumOfTaskTime(int subProjectID){
+    public int sumOfTaskTime(int subProjectID) {
         int sum = 0;
         String SQL = "SELECT SUM(taskTimeEstimate) FROM task WHERE subProjectID = ?";
-        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
-        try(PreparedStatement ps = connection.prepareStatement(SQL)) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        try (PreparedStatement ps = connection.prepareStatement(SQL)) {
             ps.setInt(1, subProjectID);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 sum += rs.getInt(1);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return sum;

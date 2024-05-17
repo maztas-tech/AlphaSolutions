@@ -112,10 +112,10 @@ public class SubProjectRepository {
         return subProjectObject;
     }
 
-    public void editSubProject(SubProject subProject){
+    public void editSubProject(SubProject subProject) {
         Connection conn = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String SQL = "UPDATE subProject SET subProjectName = ?, startDate = ?, endDate = ? WHERE subProjectID = ?";
-        try(PreparedStatement ps = conn.prepareStatement(SQL)) {
+        try (PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setString(1, subProject.getSubProjectName());
             ps.setDate(2, subProject.getStartDate());
             ps.setDate(3, subProject.getEndDate());

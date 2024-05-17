@@ -118,7 +118,7 @@ public class ProjectController {
     }
 
     @GetMapping("/{subProjectID}/createTask")
-    public String createTask(Model model, @PathVariable int subProjectID)  {
+    public String createTask(Model model, @PathVariable int subProjectID) {
         model.addAttribute("subProjectID", subProjectID);
         model.addAttribute("taskObject", new Task());
         return "create_task";
@@ -135,21 +135,21 @@ public class ProjectController {
 
     @GetMapping("/{subProjectID}/{taskID}/delete")
     public String deleteTask(@PathVariable int subProjectID,
-                             @PathVariable int taskID){
+                             @PathVariable int taskID) {
         int projectID = taskService.findID(subProjectID);
         taskService.deleteTask(taskID);
         return "redirect:/alphasolutions/" + projectID + "/" + subProjectID + "/tasks";
     }
 
     @GetMapping("/{subProjectID}/{taskID}/edit_task")
-    public String editTaskForm(@PathVariable int taskID, Model model, Task task){
-        model.addAttribute("task",task);
-        model.addAttribute("taskID",taskID);
+    public String editTaskForm(@PathVariable int taskID, Model model, Task task) {
+        model.addAttribute("task", task);
+        model.addAttribute("taskID", taskID);
         return "edit_task";
     }
 
     @PostMapping("/edit_task")
-    public String editTask(@ModelAttribute Task task){
+    public String editTask(@ModelAttribute Task task) {
         SubProject subProject = subProjectService.getSubProjectID(task.getSubProjectID());
         int projectId = subProject.getProjectID();
         int subProjectID = task.getSubProjectID();

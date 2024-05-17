@@ -22,19 +22,19 @@ public class TaskService {
         taskRepository.createTask(task);
     }
 
-    public void deleteTask(int taskID){
+    public void deleteTask(int taskID) {
         taskRepository.deleteTask(taskID);
     }
 
-    public int findID(int subProjectID){
+    public int findID(int subProjectID) {
         return taskRepository.findProjectID(subProjectID);
     }
 
-    public void editTask(Task task){
+    public void editTask(Task task) {
         taskRepository.editTask(task);
     }
 
-    public int sumOfTask(int subProjectID){
+    public int sumOfTask(int subProjectID) {
         return taskRepository.sumOfTaskTime(subProjectID);
     }
 }
