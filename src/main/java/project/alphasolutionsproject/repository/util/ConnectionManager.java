@@ -13,7 +13,7 @@ public class ConnectionManager {
 
         try {
 
-        con = DriverManager.getConnection(url, user, pass);
+            con = DriverManager.getConnection(url, user, pass);
 
         } catch (SQLException e) {
             System.out.println("Couldnt connect. Try again later.");

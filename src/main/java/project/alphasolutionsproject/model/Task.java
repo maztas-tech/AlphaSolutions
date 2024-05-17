@@ -14,7 +14,7 @@ public class Task {
         this.taskTimeEstimate = taskTimeEstimate;
     }
 
-    public Task(int taskID, String taskName, String taskDescription,  int taskTimeEstimate, int subProjectID) {
+    public Task(int taskID, String taskName, String taskDescription, int taskTimeEstimate, int subProjectID) {
         this.taskID = taskID;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
@@ -23,10 +23,8 @@ public class Task {
     }
 
 
-
     public Task() {
     }
-
 
 
     public String getTaskName() {

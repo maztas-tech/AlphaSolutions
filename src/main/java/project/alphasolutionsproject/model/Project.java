@@ -3,6 +3,7 @@ package project.alphasolutionsproject.model;
 
 import java.util.List;
 import java.sql.Date;
+
 public class Project {
 
     private int projectID;
@@ -10,7 +11,7 @@ public class Project {
     private Date startDate;
     private Date endDate;
 
-    public Project(int projectID, String projectName,  Date startDate, Date endDate) {
+    public Project(int projectID, String projectName, Date startDate, Date endDate) {
         this.projectID = projectID;
         this.projectName = projectName;
         this.startDate = startDate;
@@ -24,10 +25,8 @@ public class Project {
     }
 
 
-
-
-
-    public Project() {}
+    public Project() {
+    }
 
     public String getProjectName() {
         return projectName;
@@ -46,7 +45,7 @@ public class Project {
     }
 
     public Date getStartDate() {
-        return  startDate;
+        return startDate;
     }
 
     public void setStartDate(Date startDate) {
@@ -54,7 +53,7 @@ public class Project {
     }
 
     public Date getEndDate() {
-        return  endDate;
+        return endDate;
     }
 
     public void setEndDate(Date endDate) {

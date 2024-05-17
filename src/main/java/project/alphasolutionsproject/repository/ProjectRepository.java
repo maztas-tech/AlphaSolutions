@@ -66,7 +66,7 @@ public class ProjectRepository {
         return projectObject;
     }
 
-    //UPDATE project SET projectName = ?, startDate = ?, endDate = ? WHERE projectID = ?
+
     public void updateProject(Project project) {
         String SQL = """       
                 UPDATE project
@@ -116,9 +116,8 @@ public class ProjectRepository {
         String sql3 = "DELETE FROM project WHERE projectID = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-             PreparedStatement preparedStatement3 = connection.prepareStatement(sql3))
-        {
+             PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+             PreparedStatement preparedStatement3 = connection.prepareStatement(sql3)) {
 
             //Removing tasks
             preparedStatement.setInt(1, projectID);

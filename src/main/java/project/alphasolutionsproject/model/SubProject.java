@@ -11,7 +11,7 @@ public class SubProject {
     private int projectID;
 
 
-    public SubProject(int subProjectID, String subProjectName,  Date startDate, Date endDate) {
+    public SubProject(int subProjectID, String subProjectName, Date startDate, Date endDate) {
         this.subProjectID = subProjectID;
         this.subProjectName = subProjectName;
         this.startDate = startDate;
