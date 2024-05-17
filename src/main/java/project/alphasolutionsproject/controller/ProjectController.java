@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.alphasolutionsproject.model.Project;
 import project.alphasolutionsproject.model.SubProject;
+import project.alphasolutionsproject.model.Task;
 import project.alphasolutionsproject.service.ProjectService;
 import project.alphasolutionsproject.service.SubProjectService;
 import project.alphasolutionsproject.service.TaskService;
@@ -75,7 +76,7 @@ public class ProjectController {
     @GetMapping("/{projectID}/createSubProject")
     public String createSubProjectForm(@PathVariable int projectID, Model model) {
         model.addAttribute("projectID", projectID);
-        model.addAttribute("subProjectObejct", new SubProject());
+        model.addAttribute("subProjectObject", new SubProject());
         return "create_subProject";
     }
 
@@ -112,7 +113,48 @@ public class ProjectController {
     @GetMapping("{projectID}/{subProjectID}/tasks")
     public String showAllTasks(Model model, @PathVariable int subProjectID) {
         model.addAttribute("taskList", taskService.showAllTask(subProjectID));
+        model.addAttribute("sumOfTasks", taskService.sumOfTask(subProjectID));
         return "task";
+    }
+
+    @GetMapping("/{subProjectID}/createTask")
+    public String createTask(Model model, @PathVariable int subProjectID)  {
+        model.addAttribute("subProjectID", subProjectID);
+        model.addAttribute("taskObject", new Task());
+        return "create_task";
+    }
+
+    @PostMapping("/createTask")
+    public String createTask(@ModelAttribute("taskObject") Task task) {
+        SubProject subProject = subProjectService.getSubProjectID(task.getSubProjectID());
+        int projectID = subProject.getProjectID();
+        taskService.createTask(task);
+        System.out.println(task);
+        return "redirect:/alphasolutions/" + projectID + "/" + task.getSubProjectID() + "/tasks";
+    }
+
+    @GetMapping("/{subProjectID}/{taskID}/delete")
+    public String deleteTask(@PathVariable int subProjectID,
+                             @PathVariable int taskID){
+        int projectID = taskService.findID(subProjectID);
+        taskService.deleteTask(taskID);
+        return "redirect:/alphasolutions/" + projectID + "/" + subProjectID + "/tasks";
+    }
+
+    @GetMapping("/{subProjectID}/{taskID}/edit_task")
+    public String editTaskForm(@PathVariable int taskID, Model model, Task task){
+        model.addAttribute("task",task);
+        model.addAttribute("taskID",taskID);
+        return "edit_task";
+    }
+
+    @PostMapping("/edit_task")
+    public String editTask(@ModelAttribute Task task){
+        SubProject subProject = subProjectService.getSubProjectID(task.getSubProjectID());
+        int projectId = subProject.getProjectID();
+        int subProjectID = task.getSubProjectID();
+        taskService.editTask(task);
+        return "redirect:/alphasolutions/" + projectId + "/" + subProjectID + "/tasks";
     }
 
 }

@@ -22,17 +22,35 @@
             <td th:text="${task.taskDescription}">Task Description</td>
             <td th:text="${task.taskTimeEstimate}">Time Estimate</td>
             <td>
-                <a>
+                <a th:href="@{'/alphasolutions/'+ ${subProjectID} + '/' + ${task.taskID} + '/edit_task'}">
                     <input class="edit-button" type='button' value='Edit'/>
                 </a>
             </td>
             <td>
-                <a>
-                    <input class="delete-button" type='button' value='Delete' th:object="${subProject}"/>
+                <a th:href="@{'/alphasolutions/'  + ${subProjectID} + '/' + ${task.taskID} + '/delete'}">
+                    <input class="delete-button" type="button" value='Delete' th:object="${task}"/>
                 </a>
             </td>
         </tr>
     </table>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <td>Estimation</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${sumOfTasks}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="${'/alphasolutions/' + subProjectID +'/createTask'}">
+        <input type="button" value="New Task" class="button">
+    </a>
+
 </div>
 </body>
 </html>
