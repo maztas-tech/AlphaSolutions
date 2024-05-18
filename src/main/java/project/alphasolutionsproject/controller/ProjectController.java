@@ -110,7 +110,7 @@ public class ProjectController {
 
 
     // Task
-    @GetMapping("{projectID}/{subProjectID}/tasks")
+    @GetMapping("/{projectID}/{subProjectID}/tasks")
     public String showAllTasks(Model model, @PathVariable int subProjectID) {
         model.addAttribute("taskList", taskService.showAllTask(subProjectID));
         model.addAttribute("sumOfTasks", taskService.sumOfTask(subProjectID));
@@ -174,6 +174,17 @@ public class ProjectController {
         model.addAttribute("subProjectName", subProject.getSubProjectName());
         model.addAttribute("subproject", subProject);
         return "confirm_delete_subProject";
+    }
+
+    @GetMapping("/{subProjectID}/{taskID}/confirmDeleteTask")
+    public String confirmDeleteTask(@PathVariable("subProjectID") int subProjectID, @PathVariable("taskID") int taskID, Project projectID, Model model) {
+        Task task = taskService.searchTaskByID(taskID);
+        model.addAttribute("taskID", taskID);
+        model.addAttribute("subProjectID", subProjectID);
+        model.addAttribute("projectID", projectID);
+        model.addAttribute("taskName", task.getTaskName());
+        model.addAttribute("task", task);
+        return "confirm_delete_task";
     }
 
 }

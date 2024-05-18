@@ -120,4 +120,26 @@ public class TaskRepository {
         }
         return sum;
     }
+
+    public Task searchTaskByID(int taskID) {
+        String SQL = "SELECT taskID, taskName, taskDescription, taskTimeEstimate FROM task WHERE taskID = ?";
+        Task taskObject = null;
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, taskID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                taskObject = new Task(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getInt(4)
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return taskObject;
+    }
 }
