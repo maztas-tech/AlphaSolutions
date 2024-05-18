@@ -166,4 +166,14 @@ public class ProjectController {
         return "confirm_delete_project";
     }
 
+    @GetMapping("/{projectID}/{subProjectID}/confirmDeleteSubProject")
+    public String confirmDeleteSubProject(@PathVariable("projectID") int projectID, @PathVariable("subProjectID") int subProjectID, Model model) {
+        SubProject subProject = subProjectService.getSubProjectID(subProjectID);
+        model.addAttribute("subProjectID", subProjectID);
+        model.addAttribute("projectID", projectID);
+        model.addAttribute("subProjectName", subProject.getSubProjectName());
+        model.addAttribute("subproject", subProject);
+        return "confirm_delete_subProject";
+    }
+
 }
