@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Repository
-public class UserRepository {
+public class ProfileRepository {
 
     @Value("${spring.datasource.url}")
     private String db_url;
@@ -20,13 +20,13 @@ public class UserRepository {
     @Value("${spring.datasource.password}")
     private String db_pwd;
 
-    public Profile login(String username, String password) {
+    public Profile login(Profile profile) {
         Connection conn = ConnectionManager.getConnection(db_url, db_user, db_pwd);
 
-        String SQL = "SELECT firstName, lastName, roleName,userName,profileID,pw,departmentNO FROM profile WHERE username = ? AND password = ?";
+        String SQL = "SELECT firstName, lastName, roleName,userName,profileID,pw,departmentNO FROM profile WHERE username = ? AND pw = ?";
         try(PreparedStatement ps = conn.prepareStatement(SQL)) {
-            ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(1, profile.getUsername());
+            ps.setString(2, profile.getPassword());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String firstName = rs.getString(1);
@@ -36,13 +36,13 @@ public class UserRepository {
                 int profileID = rs.getInt(5);
                 String pw = rs.getString(6);
                 int departmentNO = rs.getInt(7);
-                Profile profile = new Profile(userName,firstName,lastName,roleName);
+                Profile newProfile = new Profile(userName,firstName,lastName,roleName);
 
-                profile.setProfileID(profileID);
-                profile.setPassword(pw);
-                profile.setDepartmentNO(departmentNO);
+                newProfile.setProfileID(profileID);
+                newProfile.setPassword(pw);
+                newProfile.setDepartmentNO(departmentNO);
 
-                return profile;
+                return newProfile;
 
             } else {
                 System.out.println("not valid user name or password");
