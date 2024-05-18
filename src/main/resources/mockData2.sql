@@ -1,64 +1,74 @@
+CREATE SCHEMA IF NOT EXISTS procalc_db;
+
 -- DDL
-CREATE TABLE IF NOT EXISTS project(
-    projectID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    projectName VARCHAR(70) NOT NULL,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL
+CREATE TABLE IF NOT EXISTS project
+(
+    projectID   INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    projectName VARCHAR(70)     NOT NULL,
+    startDate   DATE            NOT NULL,
+    endDate     DATE            NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS subProject(
-    subProjectID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    subProjectName VARCHAR(70) NOT NULL,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    projectID INT,
-    FOREIGN KEY(projectID) REFERENCES project(projectID)
+CREATE TABLE IF NOT EXISTS subProject
+(
+    subProjectID   INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    subProjectName VARCHAR(70)     NOT NULL,
+    startDate      DATE            NOT NULL,
+    endDate        DATE            NOT NULL,
+    projectID      INT,
+    FOREIGN KEY (projectID) REFERENCES project (projectID)
 );
 
-CREATE TABLE IF NOT EXISTS task(
-    taskID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    taskName VARCHAR(70) NOT NULL,
-    taskDescription VARCHAR(256),
-    taskTimeEstimate INT NOT NULL,
-    subProjectID INT,
-    FOREIGN KEY(subProjectID) REFERENCES subProject(subProjectID)
+CREATE TABLE IF NOT EXISTS task
+(
+    taskID           INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    taskName         VARCHAR(70)     NOT NULL,
+    taskDescription  VARCHAR(256),
+    taskTimeEstimate INT             NOT NULL,
+    subProjectID     INT,
+    FOREIGN KEY (subProjectID) REFERENCES subProject (subProjectID)
 );
 
-CREATE TABLE IF NOT EXISTS department(
-    departmentNO INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS department
+(
+    departmentNO   INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     departmentName VARCHAR(50)
 );
 
-CREATE TABLE IF NOT EXISTS user(
-    userID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    username VARCHAR(70) NOT NULL,
-    firstName VARCHAR(70) NOT NULL,
-    lastName VARCHAR(70) NOT NULL,
-    roleName VARCHAR(70) NOT NULL,
+CREATE TABLE IF NOT EXISTS profile
+(
+    profileID    INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    username     VARCHAR(70)     NOT NULL,
+    firstName    VARCHAR(70)     NOT NULL,
+    lastName     VARCHAR(70)     NOT NULL,
+    roleName     VARCHAR(70)     NOT NULL,
     departmentNO INT,
-    FOREIGN KEY(departmentNO) REFERENCES department(departmentNO)
+    FOREIGN KEY (departmentNO) REFERENCES department (departmentNO)
 );
 
-CREATE TABLE IF NOT EXISTS user_project(
-    userID INT,
+CREATE TABLE IF NOT EXISTS profile_project
+(
+    profileID INT,
     projectID INT,
-    FOREIGN KEY(userID) REFERENCES user(userID),
-    FOREIGN KEY(projectID) REFERENCES project(projectID)
+    FOREIGN KEY (profileID) REFERENCES profile (profileID),
+    FOREIGN KEY (projectID) REFERENCES project (projectID)
 );
 
-CREATE TABLE IF NOT EXISTS ekspertise(
-    ekspertiseID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS ekspertise
+(
+    ekspertiseID   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     ekspertiseName VARCHAR(50),
-    level INT,
-    experience INT
+    level          INT,
+    experience     INT
 );
 
 
-CREATE TABLE IF NOT EXISTS user_ekspertise(
-    userID INT,
+CREATE TABLE IF NOT EXISTS profile_ekspertise
+(
+    profileID    INT,
     ekspertiseID INT,
-    FOREIGN KEY(userID) REFERENCES user(userID),
-    FOREIGN KEY(ekspertiseID) REFERENCES ekspertise(ekspertiseID)
+    FOREIGN KEY (profileID) REFERENCES profile (profileID),
+    FOREIGN KEY (ekspertiseID) REFERENCES ekspertise (ekspertiseID)
 );
 
 
@@ -89,13 +99,13 @@ VALUES ('Engineering'),
        ('HR');
 
 
-INSERT INTO user (username, firstName, lastName, roleName, departmentNO)
+INSERT INTO profile (username, firstName, lastName, roleName, departmentNO)
 VALUES ('jdoe', 'John', 'Doe', 'Manager', 1),
        ('asmith', 'Anna', 'Smith', 'Collaborator', 2),
        ('bjones', 'Bob', 'Jones', 'Collaborator', 3);
 
 
-INSERT INTO user_project (userID, projectID)
+INSERT INTO profile_project (profileID, projectID)
 VALUES (1, 1),
        (1, 2),
        (2, 1);
@@ -107,7 +117,7 @@ VALUES ('Java', 5, 10),
        ('Project Management', 3, 5);
 
 
-INSERT INTO user_ekspertise (userID, ekspertiseID)
+INSERT INTO profile_ekspertise (profileID, ekspertiseID)
 VALUES (1, 1),
        (1, 2),
        (2, 3),
