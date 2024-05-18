@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS profile
     firstName    VARCHAR(70)     NOT NULL,
     lastName     VARCHAR(70)     NOT NULL,
     roleName     VARCHAR(70)     NOT NULL,
-    pw		 VARCHAR(200)	 NOT NULL,
+    pw		     VARCHAR(200)	 NOT NULL,
     departmentNO INT,
     FOREIGN KEY (departmentNO) REFERENCES department (departmentNO)
     );
