@@ -157,4 +157,13 @@ public class ProjectController {
         return "redirect:/alphasolutions/" + projectId + "/" + subProjectID + "/tasks";
     }
 
+    // Confirm delete
+    @GetMapping("/{projectID}/confirmDeleteProject")
+    public String confirmDeleteProject(@PathVariable("projectID") int projectID, Model model) {
+        Project project = projectService.searchProjectById(projectID);
+        model.addAttribute("projectID", projectID);
+        model.addAttribute("projectName", project.getProjectName());
+        return "confirm_delete_project";
+    }
+
 }
