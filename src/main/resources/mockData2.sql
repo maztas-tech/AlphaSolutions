@@ -1,5 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS procalc_db;
-
+USE procalc_db;
 -- DDL
 CREATE TABLE IF NOT EXISTS project
 (
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS project
     projectName VARCHAR(70)     NOT NULL,
     startDate   DATE            NOT NULL,
     endDate     DATE            NOT NULL
-);
+    );
 
 CREATE TABLE IF NOT EXISTS subProject
 (
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS subProject
     endDate        DATE            NOT NULL,
     projectID      INT,
     FOREIGN KEY (projectID) REFERENCES project (projectID)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS task
 (
@@ -27,13 +27,13 @@ CREATE TABLE IF NOT EXISTS task
     taskTimeEstimate INT             NOT NULL,
     subProjectID     INT,
     FOREIGN KEY (subProjectID) REFERENCES subProject (subProjectID)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS department
 (
     departmentNO   INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     departmentName VARCHAR(50)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS profile
 (
@@ -42,9 +42,10 @@ CREATE TABLE IF NOT EXISTS profile
     firstName    VARCHAR(70)     NOT NULL,
     lastName     VARCHAR(70)     NOT NULL,
     roleName     VARCHAR(70)     NOT NULL,
+    pw		 VARCHAR(200)	 NOT NULL,
     departmentNO INT,
     FOREIGN KEY (departmentNO) REFERENCES department (departmentNO)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS profile_project
 (
@@ -52,7 +53,7 @@ CREATE TABLE IF NOT EXISTS profile_project
     projectID INT,
     FOREIGN KEY (profileID) REFERENCES profile (profileID),
     FOREIGN KEY (projectID) REFERENCES project (projectID)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS ekspertise
 (
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS ekspertise
     ekspertiseName VARCHAR(50),
     level          INT,
     experience     INT
-);
+    );
 
 
 CREATE TABLE IF NOT EXISTS profile_ekspertise
@@ -69,7 +70,7 @@ CREATE TABLE IF NOT EXISTS profile_ekspertise
     ekspertiseID INT,
     FOREIGN KEY (profileID) REFERENCES profile (profileID),
     FOREIGN KEY (ekspertiseID) REFERENCES ekspertise (ekspertiseID)
-);
+    );
 
 
 -- DML
@@ -99,10 +100,10 @@ VALUES ('Engineering'),
        ('HR');
 
 
-INSERT INTO profile (username, firstName, lastName, roleName, departmentNO)
-VALUES ('jdoe', 'John', 'Doe', 'Manager', 1),
-       ('asmith', 'Anna', 'Smith', 'Collaborator', 2),
-       ('bjones', 'Bob', 'Jones', 'Collaborator', 3);
+INSERT INTO profile (username, firstName, lastName, roleName, pw, departmentNO)
+VALUES ('jdoe', 'John', 'Doe', 'Manager','første', 1),
+       ('asmith', 'Anna', 'Smith', 'Collaborator','anden', 2),
+       ('bjones', 'Bob', 'Jones', 'Collaborator','tredje', 3);
 
 
 INSERT INTO profile_project (profileID, projectID)
