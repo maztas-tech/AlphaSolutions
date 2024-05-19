@@ -10,7 +10,6 @@ public class Project {
     private String projectName;
     private Date startDate;
     private Date endDate;
-    private int userID;
 
     public Project(int projectID, String projectName, Date startDate, Date endDate) {
         this.projectID = projectID;
@@ -25,23 +24,7 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public Project(int projectID, String projectName, Date startDate, Date endDate, int userID) {
-        this.projectID = projectID;
-        this.projectName = projectName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.userID = userID;
-    }
-
     public Project() {
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public String getProjectName() {
