@@ -1,36 +1,40 @@
 package project.alphasolutionsproject.model;
 
 
-public class User {
-    private int userID;
+public class Profile {
+    private int profileID;
     private String username;
     private String firstName;
     private String lastName;
     private String password;
-    private String role;
+    private String roleName;
     private int departmentNO;
-    private int ekspertiseID;
 
-    public User() {}
+    public Profile() {}
 
-    public User(int userID, String username, String firstName, String lastName, String password, String role, int departmentNO, int ekspertiseID) {
-        this.userID = userID;
+    public Profile(int profileID, String username, String firstName, String lastName, String password, String roleName, int departmentNO) {
+        this.profileID = profileID;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.role = role;
+        this.roleName = roleName;
         this.departmentNO = departmentNO;
-        this.ekspertiseID = ekspertiseID;
     }
 
-
-    public int getUserID() {
-        return userID;
+    public Profile(String username, String firstName, String lastName, String roleName) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.roleName = roleName;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public int getProfileID() {
+        return profileID;
+    }
+
+    public void setProfileID(int profileID) {
+        this.profileID = profileID;
     }
 
     public String getUsername() {
@@ -65,12 +69,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public int getDepartmentNO() {
@@ -79,13 +83,5 @@ public class User {
 
     public void setDepartmentNO(int departmentNO) {
         this.departmentNO = departmentNO;
-    }
-
-    public int getEkspertiseID() {
-        return ekspertiseID;
-    }
-
-    public void setEkspertiseID(int ekspertiseID) {
-        this.ekspertiseID = ekspertiseID;
     }
 }

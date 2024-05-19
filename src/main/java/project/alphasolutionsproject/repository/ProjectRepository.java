@@ -111,13 +111,17 @@ public class ProjectRepository {
 
     public void deleteProject(int projectID) {
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        //TODO Create a SQL statement that deletes child tables from Many to many (profile_project)
         String sql = "DELETE FROM task WHERE subProjectID IN (SELECT subProjectID FROM subProject WHERE projectID = ?)";
         String sql2 = "DELETE FROM subProject WHERE projectID = ?";
-        String sql3 = "DELETE FROM project WHERE projectID = ?";
+        String sql3 = "DELETE FROM profile_project WHERE projectID = ?";
+        String sql4 = "DELETE FROM project WHERE projectID = ?";
+
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
              PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-             PreparedStatement preparedStatement3 = connection.prepareStatement(sql3)) {
+             PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
+             PreparedStatement preparedStatement4 = connection.prepareStatement(sql4)) {
 
             //Removing tasks
             preparedStatement.setInt(1, projectID);
@@ -127,9 +131,13 @@ public class ProjectRepository {
             preparedStatement2.setInt(1, projectID);
             preparedStatement2.executeUpdate();
 
-            //Removing a project
+            //Removing a profile_project
             preparedStatement3.setInt(1, projectID);
             preparedStatement3.executeUpdate();
+
+            //Removing from project
+            preparedStatement4.setInt(1, projectID);
+            preparedStatement4.executeUpdate();
 
 
         } catch (SQLException e) {
