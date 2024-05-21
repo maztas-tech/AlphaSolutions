@@ -6,6 +6,10 @@
     <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
+
+<div th:replace="~{HTMLFragments/navbar :: navbar}"></div>
+
+
 <div class="container">
     <table>
         <thead>
@@ -52,5 +56,7 @@
     </a>
 
 </div>
+
+<div th:replace="~{HTMLFragments/footer :: footer}"></div>
 </body>
 </html>
