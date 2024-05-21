@@ -157,4 +157,13 @@ public class ProjectController {
         return "redirect:/alphasolutions/" + projectId + "/" + subProjectID + "/tasks";
     }
 
+    @GetMapping(" ")
+    public String navBarEndPoints(Model model, int projectID, int subProjectID) {
+        model.addAttribute("projects", projectService.showAllProjects());
+        model.addAttribute("subProject", subProjectService.showAllSubProject(projectID));
+        model.addAttribute("task", taskService.showAllTask(subProjectID));
+
+        return "/HTMLFragments/navbar";
+    }
+
 }

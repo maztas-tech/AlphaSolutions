@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar fragment</title>
+    <link th:href="@{/alphasolutions.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:fragment="navbar" class="navbarCostumization">
+
+    <div class="navbarContent">
+        <a href="/alphasolutions" class="logo">ProCalc</a>
+        <ul class="nav-links">
+            <li th:each="project : ${projects}">
+                <a th:href="@{'alphasolutions/' + ${project.projectID} + '/subProjects'}">
+                    <input type="button" value="Sub-projects" class="button">
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{'/alphasolutions'}">Projects</a>
+            </li>
+
+            <li th:each="project : ${projects}">
+
+                <a th:href="@{'/alphasolutions/' + ${project.projectID} + '/subProjects'}">Sub-projects</a>
+                <input type="button" name="Sub-projects" value="Sub-Projects">
+            </li>
+
+            <li th:each="subProject : ${subProjects}">
+                <a th:href="@{'/alphasolutions/' + ${project.projectID} + '/' + ${subProject.subProjectID} + }">Task</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
