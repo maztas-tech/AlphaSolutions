@@ -6,6 +6,10 @@
     <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
+
+<div th:replace="~{HTMLFragments/navbar :: navbar}"></div>
+
+
 <div class="container">
     <form action="/alphasolutions/createTask" th:object="${taskObject}" method="post">
 
@@ -37,5 +41,6 @@
     <input type="button" value="Back">
 </a>
 
+<div th:replace="~{HTMLFragments/footer :: footer}"></div>
 </body>
 </html>
