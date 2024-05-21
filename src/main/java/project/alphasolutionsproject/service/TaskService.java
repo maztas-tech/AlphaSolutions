@@ -37,4 +37,8 @@ public class TaskService {
     public int sumOfTask(int subProjectID) {
         return taskRepository.sumOfTaskTime(subProjectID);
     }
+
+    public Task searchTaskByID(int taskID) {
+        return taskRepository.searchTaskByID(taskID);
+    }
 }

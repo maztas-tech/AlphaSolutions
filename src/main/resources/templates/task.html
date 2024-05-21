@@ -27,8 +27,8 @@
                 </a>
             </td>
             <td>
-                <a th:href="@{'/alphasolutions/'  + ${subProjectID} + '/' + ${task.taskID} + '/delete'}">
-                    <input class="delete-button" type="button" value='Delete' th:object="${task}"/>
+                <a th:href="@{'/alphasolutions/' + ${subProjectID} + '/' + ${task.taskID} + '/confirmDeleteTask'}">
+                    <input class="delete-button" type='button' value='Delete'/>
                 </a>
             </td>
         </tr>
