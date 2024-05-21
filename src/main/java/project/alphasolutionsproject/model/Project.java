@@ -24,7 +24,6 @@ public class Project {
         this.endDate = endDate;
     }
 
-
     public Project() {
     }
 
