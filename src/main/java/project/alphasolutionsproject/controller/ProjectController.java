@@ -176,13 +176,14 @@ public class ProjectController {
         return "confirm_delete_subProject";
     }
 
-    @GetMapping(" ")
-    public String navBarEndPoints(Model model, int projectID, int subProjectID) {
-        model.addAttribute("projects", projectService.showAllProjects());
-        model.addAttribute("subProject", subProjectService.showAllSubProject(projectID));
-        model.addAttribute("task", taskService.showAllTask(subProjectID));
+    @GetMapping("HTML")
+    public String navBarEndPoints(Model model, Project project, SubProject subProject) {
+        model.addAttribute("projectID", project.getProjectID());
+        model.addAttribute("subProjectID", subProject.getProjectID());
 
         return "/HTMLFragments/navbar";
     }
+
+
 
 }
