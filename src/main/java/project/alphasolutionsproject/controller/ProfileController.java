@@ -25,7 +25,6 @@ public class ProfileController {
 
     @PostMapping("")
     public String logInPost(@ModelAttribute Profile profile){
-        //TODO Create if statement so the user is not being redirected if the password is incorrect
         Profile profile1 = profileService.logIn(profile);
 
         if (profile1 == null){
