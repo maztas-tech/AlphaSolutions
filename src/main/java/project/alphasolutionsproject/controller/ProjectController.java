@@ -68,10 +68,16 @@ public class ProjectController {
 
     // SubProject
     @GetMapping("/{projectID}/subProjects")
-    public String showAllSubProjects(Model model, @PathVariable int projectID) {
+    public String showAllSubProjects(Model model, @PathVariable int projectID, SubProject subProject) {
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
+        int subProjectID = subProject.getSubProjectID();
+
+        model.addAttribute("taskObject", taskService.showAllTask(subProjectID));
+        //model.addAttribute("sumOfTasks", taskService.sumOfTask(subProjectID));
+        model.addAttribute("sumOfTasks", taskService.sumOfTask(projectID));
         return "subProject";
     }
+
 
     @GetMapping("/{projectID}/createSubProject")
     public String createSubProjectForm(@PathVariable int projectID, Model model) {
