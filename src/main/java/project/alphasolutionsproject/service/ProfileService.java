@@ -14,4 +14,8 @@ public class ProfileService {
         return profileRepository.login(profile);
     }
 
+    public void registrer(Profile profile){
+        profileRepository.registrerBruger(profile);
+    }
+
 }

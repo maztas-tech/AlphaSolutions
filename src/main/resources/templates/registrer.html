@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Profile</title>
+
+</head>
+<body>
+
+<div class="container">
+    <form action="/logIn/create" th:object="${profile}" method="post">
+
+        <input type="hidden" name="profileID" th:value="${profile.getProfileID()}">
+
+        <p>
+            <label for="userName">user name</label><br>
+            <input class="input-field" id="userName" name="userName" type="text" th:field="*{username}" placeholder="brugernavn"><br>
+        </p>
+        <p>
+            <label for="firstName">first name</label><br>
+            <input class="input-field" id="firstName" name="firstName" type="text" th:field="*{firstName}" placeholder="fornavn"><br>
+        </p>
+        <p>
+            <label for="lastName">lastName</label><br>
+            <input class="input-field" id="lastName" name="lastName" type="text" th:field="*{lastName}" placeholder="efterNavn"><br>
+        </p>
+        <p>
+            <label for="role">role</label><br>
+            <input class="input-field" id="role" name="role" type="text" th:field="*{roleName}" placeholder="rolle"><br>
+        </p>
+        <p>
+            <label for="password">password</label><br>
+            <input class="input-field" id="password" name="password" type="password" th:field="*{password}" placeholder="adgangskode"><br>
+        </p>
+        <p>
+            <label for="departmenNO">departmentNO</label><br>
+            <input class="input-field" id="departmenNO" name="departmentNO" type="number" th:field="*{departmentNO}" placeholder="afdeling"><br>
+        </p>
+
+        <input type="hidden" id="profileID" th:field="*{profileID}">
+
+        <p>
+            <button class="submit-button" type="submit"> registrere bruger</button>
+        </p>
+
+    </form>
+
+</div>
+<a th:href="@{'/alphasolutions'}">
+    <input type="button" value="Back">
+</a>
+
+<div th:replace="~{HTMLFragments/footer :: footer}"></div>
+</body>
+</html>

@@ -53,5 +53,23 @@ public class ProfileRepository {
         return null;
     }
 
+    public void registrerBruger(Profile profile){
+        if (profile.getUsername() != null){
+            Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+            String sql = "INSERT INTO profile(userName, firstName, lastName, roleName, pw, departmentNO) VALUES(?,?,?,?,?,?)";
+            try (PreparedStatement ps = connection.prepareStatement(sql)){
 
+                ps.setString(1,profile.getUsername());
+                ps.setString(2,profile.getFirstName());
+                ps.setString(3,profile.getLastName());
+                ps.setString(4,profile.getRoleName());
+                ps.setString(5,profile.getPassword());
+                ps.setInt(6,profile.getDepartmentNO());
+
+                ps.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
