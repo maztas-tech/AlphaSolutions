@@ -34,4 +34,7 @@ public class SubProjectService {
     public SubProject getSubProjectID(int subProjectID) {
         return subProjectRepository.searchSubProjectID(subProjectID);
     }
+    public int id (int projectId){
+        return subProjectRepository.subprojectID(projectId);
+    }
 }
