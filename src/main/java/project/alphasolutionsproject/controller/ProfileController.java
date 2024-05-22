@@ -31,8 +31,18 @@ public class ProfileController {
             return "redirect:/logIn";
         }
         return "redirect:/alphasolutions";
+    }
 
+    @GetMapping("/create")
+    public String registrerForm(Model model){
+        model.addAttribute("profile", new Profile());
+        return "registrer";
+    }
 
+    @PostMapping("/create")
+    public String registrer(@ModelAttribute Profile profile){
+        profileService.registrer(profile);
+        return "redirect:/alphasolutions";
     }
 
 }

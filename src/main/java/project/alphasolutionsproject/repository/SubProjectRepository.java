@@ -128,4 +128,28 @@ public class SubProjectRepository {
         }
 
     }
-}
+
+    public int subprojectID(int projectID){
+
+        int sum = 0;
+        String SQL = "SELECT SUM(taskTimeEstimate) FROM task WHERE subProjectID = ?";
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        try (PreparedStatement ps = connection.prepareStatement(SQL)) {
+
+            for (SubProject subProject : showAllSubProject(projectID)){
+                ps.setInt(1, subProject.getSubProjectID());
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    sum += rs.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sum;
+
+
+
+        }
+    }
