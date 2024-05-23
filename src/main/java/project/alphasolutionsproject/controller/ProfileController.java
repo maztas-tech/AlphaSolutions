@@ -1,5 +1,7 @@
 package project.alphasolutionsproject.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,22 @@ public class ProfileController {
     private ProfileService profileService;
 
     @GetMapping("")
-    public String logInForm(Profile profile, Model model){
+    public String logInForm(Model model, HttpSession session, Profile profile){
         model.addAttribute("profile",new Profile());
+        session.setAttribute("profile",profile.getProfileID());
         return "logIn";
     }
+    /*
+    @GetMapping("/alphasolutions")
+    public String logOut(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if (session != null){
+            session.invalidate();
+        }
+        return "frontpage";
+    }
+     */
+
 
     @PostMapping("")
     public String logInPost(@ModelAttribute Profile profile){
