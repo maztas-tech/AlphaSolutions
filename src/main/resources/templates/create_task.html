@@ -20,25 +20,25 @@
             <input class="input-field" id="taskName" name="taskName" th:field="*{taskName}" placeholder="Opgave navn"><br>
         </p>
         <p>
-            <label for="description">Description</label><br>
+            <label for="description">Opgave beskrivelse</label><br>
             <textarea id="description" name="description" type="text" th:field="*{taskDescription}" placeholder="Opgave beskrivelse"></textarea><br>
         </p>
         <p>
-            <label for="timeEstimate">Time Estimate</label><br>
+            <label for="timeEstimate">Tidsestimering</label><br>
             <input class="input-field" id="timeEstimate" name="timeEstimate" type="number" th:field="*{taskTimeEstimate}" placeholder="Tidsestimering"><br>
         </p>
 
         <input type="hidden" id="subProjectID" th:field="*{subProjectID}">
 
         <p>
-            <button class="submit-button" type="submit" value="Opret">Create Task</button>
+            <button class="submit-button" type="submit" value="Opret">Opret</button>
         </p>
 
     </form>
 
 </div>
 <a th:href="@{'/alphasolutions'}">
-    <input type="button" value="Back">
+    <input type="button" value="Tilbage">
 </a>
 
 <div th:replace="~{HTMLFragments/footer :: footer}"></div>
