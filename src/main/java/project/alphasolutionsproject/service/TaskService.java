@@ -26,9 +26,7 @@ public class TaskService {
         taskRepository.deleteTask(taskID);
     }
 
-    public int findID(int subProjectID) {
-        return taskRepository.findProjectID(subProjectID);
-    }
+
 
     public void editTask(Task task) {
         taskRepository.editTask(task);
