@@ -7,13 +7,13 @@
 </head>
 <body>
 <div class="container">
-    <p>Are you sure you want to delete "<span th:text="${taskName}"></span>"? This cannot be undone.</p>
+    <p>Er du sikker på vil slette <span th:text="${taskName}"></span> ? Det kan ikke fortrydes.</p>
 
     <a th:href="@{'/alphasolutions/'  + ${subProjectID} + '/' + ${task.taskID} + '/delete'}">
-        <input class="delete-button" type="button" value='Delete' th:object="${task}"/>
+        <input class="delete-button" type="button" value='Slet' th:object="${task}"/>
     </a>
     <a th:href="@{'/alphasolutions/' + ${projectID} + '/' + ${subProjectID} + '/tasks'}">
-        <button type="submit" class="btn">Cancel</button>
+        <button type="submit" class="btn" value="Afbryd">Cancel</button>
     </a>
 </div>
 </body>
