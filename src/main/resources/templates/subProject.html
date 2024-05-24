@@ -14,11 +14,11 @@
     <table>
         <thead>
         <tr>
-            <td>Subproject Name</td>
-            <td>Start date</td>
-            <td>End date</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <td>Subprojekt navn</td>
+            <td>Start dato</td>
+            <td>Slut dato</td>
+            <td>Rediger</td>
+            <td>Slet</td>
         </tr>
         </thead>
         <tr th:each="subProject : ${subProjectList}">
@@ -31,19 +31,19 @@
             <td th:text="${subProject.endDate}">End Date</td>
             <td>
                 <a th:href="@{${subProject.subProjectID} + '/edit_subproject'}">
-                    <input class="edit-button" type='button' value='Edit'/>
+                    <input class="edit-button" type='button' value='Rediger'/>
                 </a>
             </td>
             <td>
                 <a th:href="@{'/alphasolutions/' + ${subProject.projectID} + '/' + ${subProject.subProjectID} + '/confirmDeleteSubProject'}">
-                    <input class="delete-button" type='button' value='Delete'/>
+                    <input class="delete-button" type='button' value='Slet'/>
                 </a>
             </td>
         </tr>
 
     </table>
     <a th:href="${'/alphasolutions/'+ projectID +'/createSubProject'}">
-        <input type="button" value="New subProject" class="button">
+        <input type="button" value="Ny subprojekt" class="button">
     </a>
 </div>
 <div th:replace="~{HTMLFragments/footer :: footer}"></div>
