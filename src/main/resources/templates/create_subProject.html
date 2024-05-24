@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>create subProject</title>
+  <title>Opret subprojekt</title>
   <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
@@ -16,22 +16,22 @@
     <input type="hidden" name="projectID" th:value="${projectID}">
 
     <p>
-      <label for="subProjectName">Name of subProject</label><br>
-      <input class="input-field" id="subProjectName" name="subProjectName" th:field="*{subProjectName}" placeholder="subProject name"><br>
+      <label for="subProjectName">Navn på subprojekt</label><br>
+      <input class="input-field" id="subProjectName" name="subProjectName" th:field="*{subProjectName}" placeholder="Subprojekt navn"><br>
     </p>
     <p>
-      <label for="startDate">start date</label><br>
-      <input class="input-field" id="startDate" name="startDate" type="date" th:field="*{startDate}" placeholder="start date"><br>
+      <label for="startDate">Start dato</label><br>
+      <input class="input-field" id="startDate" name="startDate" type="date" th:field="*{startDate}" placeholder="Start dato"><br>
     </p>
     <p>
-      <label for="endDate">end date</label><br>
-      <input class="input-field" id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="end date"><br>
+      <label for="endDate">Slut dato</label><br>
+      <input class="input-field" id="endDate" name="endDate" type="date" th:field="*{endDate}" placeholder="Slut dato"><br>
     </p>
 
     <input type="hidden" id="projectID" th:field="*{projectID}">
 
     <p>
-      <button class="submit-button" type="submit">Create subProject</button>
+      <button class="submit-button" type="submit" value="Opret">Create subProject</button>
     </p>
 
   </form>
