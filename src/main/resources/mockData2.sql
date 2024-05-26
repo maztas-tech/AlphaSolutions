@@ -35,15 +35,22 @@ CREATE TABLE IF NOT EXISTS department
     departmentName VARCHAR(50)
     );
 
+create TABLE IF NOT EXISTS role
+(
+    roleID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    roleName VARCHAR(50)
+);
+
 CREATE TABLE IF NOT EXISTS profile
 (
     profileID    INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     username     VARCHAR(70)     NOT NULL,
     firstName    VARCHAR(70)     NOT NULL,
     lastName     VARCHAR(70)     NOT NULL,
-    roleName     VARCHAR(70)     NOT NULL,
     pw		     VARCHAR(200)	 NOT NULL,
+    roleID       INT,
     departmentNO INT,
+    FOREIGN KEY (roleID) REFERENCES role (roleID),
     FOREIGN KEY (departmentNO) REFERENCES department (departmentNO)
     );
 
@@ -99,11 +106,15 @@ VALUES ('Engineering_H2'),
        ('Marketing_H2'),
        ('HR_H2');
 
+INSERT INTO role (roleName)
+VALUES ('Manager_H2'),
+       ('Collaborator_H2');
 
-INSERT INTO profile (username, firstName, lastName, roleName, pw, departmentNO)
-VALUES ('jdoe_H2', 'John_H2', 'Doe_H2', 'Manager_H2','første', 1),
-       ('asmith_H2', 'Anna_H2', 'Smith_H2', 'Collaborator_H2','anden', 2),
-       ('bjones_H2', 'Bob_H2', 'Jones_H2', 'Collaborator_H2','tredje', 3);
+
+INSERT INTO profile (username, firstName, lastName, roleID, pw, departmentNO)
+VALUES ('jdoe_H2', 'John_H2', 'Doe_H2', 1,'første', 1),
+       ('asmith_H2', 'Anna_H2', 'Smith_H2', 2,'anden', 2),
+       ('bjones_H2', 'Bob_H2', 'Jones_H2', 2,'tredje', 3);
 
 
 INSERT INTO profile_project (profileID, projectID)
