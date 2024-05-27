@@ -35,8 +35,10 @@
             </select>
         </p>
         <p>
-            <label for="departmenNO">Afdeling</label><br>
-            <input class="input-field" id="departmenNO" name="departmentNO" type="number" th:field="*{departmentNO}" placeholder="Afdeling"><br>
+            <label for="departmenNO">vælg Afdeling</label><br>
+            <select class="input-field" id="departmenNO" name="departmentNO" th:field="*{departmentNO}">
+                <option th:each="department : ${departmentList}" th:value="${department.departmentNO}" th:text="${department.departmentName}"></option>
+            </select>
         </p>
 
         <input type="hidden" id="profileID" th:field="*{profileID}">
