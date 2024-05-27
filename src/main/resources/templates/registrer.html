@@ -25,12 +25,14 @@
             <input class="input-field" id="lastName" name="lastName" type="text" th:field="*{lastName}" placeholder="Efternavn"><br>
         </p>
         <p>
-            <label for="role">Rolle</label><br>
-            <input class="input-field" id="role" name="role" type="text" th:field="*{roleName}" placeholder="Rolle"><br>
-        </p>
-        <p>
             <label for="password">Adgangskode</label><br>
             <input class="input-field" id="password" name="password" type="password" th:field="*{password}" placeholder="Adgangskode"><br>
+        </p>
+        <p>
+            <label for="roleID">vælg Rolle</label><br>
+            <select class="input-field" id="roleID" name="roleID" th:field="*{roleID}" >
+            <option th:each="role : ${roleList}" th:value="${role.roleID}" th:text="${role.roleName}"></option>
+            </select>
         </p>
         <p>
             <label for="departmenNO">Afdeling</label><br>

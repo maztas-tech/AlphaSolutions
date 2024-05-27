@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import project.alphasolutionsproject.model.Profile;
 import project.alphasolutionsproject.service.ProfileService;
+import project.alphasolutionsproject.service.RoleService;
 
 @Controller
 @RequestMapping("/logIn")
@@ -16,6 +17,8 @@ public class ProfileController {
 
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping("")
     public String logInForm(Profile profile, Model model){
@@ -26,6 +29,7 @@ public class ProfileController {
     @PostMapping("")
     public String logInPost(@ModelAttribute Profile profile){
         Profile profile1 = profileService.logIn(profile);
+        System.out.println(profile);
 
         if (profile1 == null){
             return "redirect:/logIn";
@@ -36,12 +40,14 @@ public class ProfileController {
     @GetMapping("/create")
     public String registrerForm(Model model){
         model.addAttribute("profile", new Profile());
+        model.addAttribute("roleList", roleService.showRoles());
         return "registrer";
     }
 
     @PostMapping("/create")
     public String registrer(@ModelAttribute Profile profile){
         profileService.registrer(profile);
+        System.out.println(profile);
         return "redirect:/alphasolutions";
     }
 
