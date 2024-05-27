@@ -7,27 +7,28 @@ public class Profile {
     private String firstName;
     private String lastName;
     private String password;
-    private String roleName;
+    private int roleID;
     private int departmentNO;
 
     public Profile() {}
 
-    public Profile(int profileID, String username, String firstName, String lastName, String password, String roleName, int departmentNO) {
+    public Profile(int profileID, String username, String firstName, String lastName, String password, int roleID, int departmentNO) {
         this.profileID = profileID;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.roleName = roleName;
+        this.roleID = roleID;
         this.departmentNO = departmentNO;
     }
 
-    public Profile(String username, String firstName, String lastName, String roleName) {
+    public Profile(String username, String firstName, String lastName, int roleID) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.roleName = roleName;
+        this.roleID = roleID;
     }
+
 
     public int getProfileID() {
         return profileID;
@@ -69,12 +70,12 @@ public class Profile {
         this.password = password;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public int getRoleID() {
+        return roleID;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
     }
 
     public int getDepartmentNO() {
@@ -83,5 +84,18 @@ public class Profile {
 
     public void setDepartmentNO(int departmentNO) {
         this.departmentNO = departmentNO;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "profileID=" + profileID +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", roleID=" + roleID +
+                ", departmentNO=" + departmentNO +
+                '}';
     }
 }

@@ -34,4 +34,8 @@ public class ProjectService {
     public void deleteProject(int projectID) {
         projectRepository.deleteProject(projectID);
     }
+
+    public int findID(int subProjectID) {
+        return projectRepository.findProjectID(subProjectID);
+    }
 }

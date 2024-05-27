@@ -74,23 +74,6 @@ public class TaskRepository {
         }
     }
 
-    public int findProjectID(int subProjectID) {
-        int id = 0;
-        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String sql = "SELECT projectID FROM subProject WHERE subProjectId = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, subProjectID);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                id = rs.getInt(1);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return id;
-    }
-
     public void editTask(Task task) {
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "UPDATE task SET taskName = ?, taskDescription = ?, taskTimeEstimate = ?  WHERE taskID = ?";
