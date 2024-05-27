@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import project.alphasolutionsproject.model.Profile;
+import project.alphasolutionsproject.service.DepartmentService;
 import project.alphasolutionsproject.service.ProfileService;
 import project.alphasolutionsproject.service.RoleService;
 
@@ -19,6 +20,8 @@ public class ProfileController {
     private ProfileService profileService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private DepartmentService departmentService;
 
     @GetMapping("")
     public String logInForm(Profile profile, Model model){
@@ -41,6 +44,7 @@ public class ProfileController {
     public String registrerForm(Model model){
         model.addAttribute("profile", new Profile());
         model.addAttribute("roleList", roleService.showRoles());
+        model.addAttribute("departmentList",departmentService.showDepartments());
         return "registrer";
     }
 
