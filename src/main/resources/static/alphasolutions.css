@@ -85,6 +85,25 @@ tfoot td {
     outline: none; /* Remove focus outline */
 }
 
+.back-button {
+    background-color: grey; /* grey */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: darkgray; /* Darker shade of grey on hover */
+}
+
+.back-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
 .edit-button {
     background-color: #ffc107; /* amber color */
     color: white;
