@@ -66,6 +66,25 @@ tfoot td {
     outline: none; /* Remove focus outline */
 }
 
+.create-button {
+    background-color: limegreen; /* lime green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+    background-color: mediumseagreen; /* Darker shade of limegreen on hover */
+}
+
+.create-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
 .edit-button {
     background-color: #ffc107; /* amber color */
     color: white;
