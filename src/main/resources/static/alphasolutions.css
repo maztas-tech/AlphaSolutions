@@ -12,8 +12,11 @@ caption {
     font-weight: bold;
 }
 
-thead {
+thead{
     background-color: rgb(1 240 245);
+}
+tfoot {
+    background-color: rgb(160 160 160);
 }
 
 th,

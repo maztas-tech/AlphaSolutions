@@ -13,46 +13,38 @@
 <div class="container">
     <table>
         <thead>
-        <tr>
-            <td>Opgave navn</td>
-            <td>Opgave beskrivelse</td>
-            <td>Tidsestimering</td>
-            <td>Rediger</td>
-            <td>Slet</td>
-        </tr>
-        </thead>
-        <tr th:each="task : ${taskList}">
-            <td th:text="${task.taskName}">Opgave navn</td>
-            <td th:text="${task.taskDescription}">Opgave beskrivelse</td>
-            <td th:text="${task.taskTimeEstimate}">Tidsestimering</td>
-            <td>
-                <a th:href="@{'/alphasolutions/'+ ${subProjectID} + '/' + ${task.taskID} + '/edit_task'}">
-                    <input class="edit-button" type='button' value='Rediger'/>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{'/alphasolutions/' + ${subProjectID} + '/' + ${task.taskID} + '/confirmDeleteTask'}">
-                    <input class="delete-button" type='button' value='Slet'/>
-                </a>
-            </td>
-        </tr>
-    </table>
-    <br>
-    <table>
-        <thead>
             <tr>
-                <td>Samlet estimering</td>
+                <td>Opgave navn</td>
+                <td>Opgave beskrivelse</td>
+                <td>Tidsestimering</td>
+                <td>Rediger</td>
+                <td>Slet</td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td th:text="${sumOfTasks}"></td>
+            <tr th:each="task : ${taskList}">
+                <td th:text="${task.taskName}">Opgave navn</td>
+                <td th:text="${task.taskDescription}">Opgave beskrivelse</td>
+                <td th:text="${task.taskTimeEstimate}">Tidsestimering</td>
+                <td>
+                    <a th:href="@{'/alphasolutions/'+ ${subProjectID} + '/' + ${task.taskID} + '/edit_task'}">
+                        <input class="edit-button" type='button' value='Rediger'/>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/alphasolutions/' + ${subProjectID} + '/' + ${task.taskID} + '/confirmDeleteTask'}">
+                        <input class="delete-button" type='button' value='Slet'/>
+                    </a>
+                </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <th>Samlet estimering</th>
+                <td th:text="${sumOfTasks}" colspan="4"></td>
+            </tr>
+        </tfoot>
     </table>
-
-
-
 
 </div>
 <div>
