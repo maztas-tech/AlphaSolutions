@@ -47,16 +47,17 @@
     </table>
 
 </div>
-<div>
-    <a th:href="${'/alphasolutions/' + subProjectID +'/createTask'}">
-        <input type="button" value="Ny opgave" class="create-button">
-    </a>
-</div>
-<div>
-    <a th:href="${'/alphasolutions'}">
-        <input type="button" value="Tilbage" class="back-button">
-    </a>
-</div>
+    <div class="button-positions">
+        <a th:href="${'/alphasolutions/' + subProjectID +'/createTask'}">
+            <input type="button" value="Ny opgave" class="create-button">
+        </a>
+    </div>
+    <div class="button-positions">
+        <a th:href="${'/alphasolutions'}">
+            <input type="button" value="Tilbage" class="back-button">
+        </a>
+    </div>
+
 
 <div th:replace="~{HTMLFragments/footer :: footer}"></div>
 </body>

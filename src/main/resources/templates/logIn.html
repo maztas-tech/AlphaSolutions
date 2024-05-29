@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
-<form action="/logIn" method="post" th:object="${profile}">
+    <div class="container">
+        <form action="/logIn" method="post" th:object="${profile}">
 
-    <p>
-        <label for="userName" >Brugernavn</label>
-        <input id="userName" type="text" th:field="*{username}">
-    </p>
+            <p>
+                <label for="userName" >Brugernavn</label><br>
+                <input class="input-field" id="userName" type="text" th:field="*{username}">
+            </p>
 
-    <p>
-        <label for="password" >Adgangskode</label>
-        <input id="password" type="password" th:field="*{password}">
-    </p>
+            <p>
+                <label for="password" >Adgangskode</label><br>
+                <input class="input-field" id="password" type="password" th:field="*{password}">
+            </p>
 
-    <input type="submit" name="logIn" value="Log ind">
-</form>
+            <input type="submit" name="logIn" value="Log ind" class="create-button">
+        </form>
+    </div>
+
 
 </body>
 </html>

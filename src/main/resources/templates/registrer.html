@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret profil</title>
-
+    <link th:href="@{/alphasolutions.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -29,13 +29,13 @@
             <input class="input-field" id="password" name="password" type="password" th:field="*{password}" placeholder="Adgangskode"><br>
         </p>
         <p>
-            <label for="roleID">vælg Rolle</label><br>
+            <label for="roleID">Vælg rolle</label><br>
             <select class="input-field" id="roleID" name="roleID" th:field="*{roleID}" >
             <option th:each="role : ${roleList}" th:value="${role.roleID}" th:text="${role.roleName}"></option>
             </select>
         </p>
         <p>
-            <label for="departmenNO">vælg Afdeling</label><br>
+            <label for="departmenNO">Vælg afdeling</label><br>
             <select class="input-field" id="departmenNO" name="departmentNO" th:field="*{departmentNO}">
                 <option th:each="department : ${departmentList}" th:value="${department.departmentNO}" th:text="${department.departmentName}"></option>
             </select>
