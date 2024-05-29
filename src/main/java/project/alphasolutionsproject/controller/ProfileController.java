@@ -32,7 +32,6 @@ public class ProfileController {
     @PostMapping("")
     public String logInPost(@ModelAttribute Profile profile){
         Profile profile1 = profileService.logIn(profile);
-        System.out.println(profile);
 
         if (profile1 == null){
             return "redirect:/logIn";
@@ -51,7 +50,6 @@ public class ProfileController {
     @PostMapping("/create")
     public String registrer(@ModelAttribute Profile profile){
         profileService.registrer(profile);
-        System.out.println(profile);
         return "redirect:/alphasolutions";
     }
 

@@ -44,8 +44,6 @@ public class ProfileRepository {
 
                 return newProfile;
 
-            } else {
-                System.out.println("not valid user name or password");
             }
         }catch (SQLException e) {
             e.printStackTrace();
