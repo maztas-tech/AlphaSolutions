@@ -44,7 +44,6 @@ public class ProjectController {
     public String edit(@ModelAttribute Project project) {
 
         projectService.editProject(project);
-        System.out.println(project);
         return "redirect:/alphasolutions";
     }
 
@@ -70,10 +69,7 @@ public class ProjectController {
     @GetMapping("/{projectID}/subProjects")
     public String showAllSubProjects(Model model, @PathVariable int projectID, SubProject subProject) {
         model.addAttribute("subProjectList", subProjectService.showAllSubProject(projectID));
-        int subProjectID = subProjectService.id(projectID);
 
-        //model.addAttribute("taskObject", taskService.showAllTask(subProjectID));
-        //model.addAttribute("sumOfTasks", taskService.sumOfTask(subProjectID));
         for (SubProject subProject1 : subProjectService.showAllSubProject(projectID)){
             model.addAttribute("sumOfTasks", taskService.sumOfTask(subProject1.getSubProjectID()));
         }
@@ -138,7 +134,6 @@ public class ProjectController {
         SubProject subProject = subProjectService.getSubProjectID(task.getSubProjectID());
         int projectID = subProject.getProjectID();
         taskService.createTask(task);
-        System.out.println(task);
         return "redirect:/alphasolutions/" + projectID + "/" + task.getSubProjectID() + "/tasks";
     }
 
